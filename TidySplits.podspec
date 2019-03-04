@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.summary = "Another approach for SplitView layout written in Swift. Simple. Powerful."
   spec.homepage = "https://github.com/TomKaminski/TidySplits"
   spec.license = "MIT"
-  s.author = { "Tomasz Kaminski" }
+  spec.author = { "Tomasz Kaminski" => "tkaminski93@gmail.com" }
   spec.source = { :git => "https://github.com/TomKaminski/TidySplits.git", :tag => spec.version }
   spec.source_files = "Source/**/*.swift"
   spec.requires_arc = true
