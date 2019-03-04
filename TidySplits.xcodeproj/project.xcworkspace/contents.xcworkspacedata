@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TidySplits.xcodeproj">
+      location = "group:../TidySplits.podspec">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
