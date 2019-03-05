@@ -87,39 +87,39 @@ public class TidySplitsNavigator {
     return primaryNavigationController
   }
   
-  open func push(_ ctrl: TidySplitsChildControllerProtocol) {
+  open func push(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
     if self.currentHorizontalClass == .regular {
       if ctrl.prefferedDisplayType == .Detail {
         detailChilds.append(ctrl)
         if let detailNav = self.detailNavigationController {
-          detailNav.pushViewController(ctrl as! UIViewController, animated: true)
+          detailNav.pushViewController(ctrl as! UIViewController, animated: animated)
         } else {
           detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl as! UIViewController, .Detail)
         }
       } else {
         primaryChilds.append(ctrl)
-        primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: true)
+        primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
       }
     } else {
       ctrl.prefferedDisplayType == .Detail
         ? detailChilds.append(ctrl)
         : primaryChilds.append(ctrl)
-      primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: true)
+      primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
     }
   }
   
-  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType) -> UIViewController? {
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, animated: Bool = true) -> UIViewController? {
     if self.currentHorizontalClass == .regular {
       if type == .Detail && detailChilds.count > 1 {
-        return self.detailNavigationController?.popViewController(animated: true)
+        return self.detailNavigationController?.popViewController(animated: animated)
       }
       
       if type == .Primary && primaryChilds.count > 1 {
-        return self.primaryNavigationController.popViewController(animated: true)
+        return self.primaryNavigationController.popViewController(animated: animated)
       }
     } else {
       if !detailChilds.isEmpty || primaryChilds.count > 1 {
-        return self.primaryNavigationController.popViewController(animated: true)
+        return self.primaryNavigationController.popViewController(animated: animated)
       }
     }
     

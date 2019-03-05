@@ -78,12 +78,12 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     super.viewWillLayoutSubviews()
   }
   
-  open func push(_ ctrl: TidySplitsChildControllerProtocol) {
-    self.navigator.push(ctrl)
+  open func push(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
+    self.navigator.push(ctrl, animated: animated)
   }
   
-  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType) -> UIViewController? {
-    return self.navigator.pop(from: type)
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, animated: Bool = true) -> UIViewController? {
+    return self.navigator.pop(from: type, animated: animated)
   }
   
   public var remapingInProgress: Bool {
