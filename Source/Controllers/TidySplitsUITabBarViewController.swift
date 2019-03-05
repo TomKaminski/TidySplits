@@ -11,7 +11,7 @@ import UIKit
 open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChildControllerProtocol {
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType!
   
-  init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
+  public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
     super.init(nibName: nil, bundle: nil)
     self.prefferedDisplayType = prefferedDisplayType
   }
