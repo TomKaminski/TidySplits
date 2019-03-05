@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol TidySplitsChildControllerProtocol where Self: UIViewController {
-  var prefferedDisplayType: TidySplitsChildPreferedDisplayType! { get set }
+  var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
   var tidySplitController: TidySplitsUISplitViewController? { get }
   var tidyNavigationController: TidySplitsUINavigationController? { get }

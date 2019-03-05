@@ -9,14 +9,15 @@
 import UIKit
 
 open class TidySplitsUIViewController: UIViewController, TidySplitsChildControllerProtocol {
-  public var prefferedDisplayType: TidySplitsChildPreferedDisplayType!
+  public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
   
   public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
-    super.init(nibName: nil, bundle: nil)
     self.prefferedDisplayType = prefferedDisplayType
+    super.init(nibName: nil, bundle: nil)
   }
   
   required public init?(coder aDecoder: NSCoder) {
+    self.prefferedDisplayType = .Detail
     super.init(coder: aDecoder)
   }
   
