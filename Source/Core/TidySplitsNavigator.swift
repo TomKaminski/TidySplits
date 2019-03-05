@@ -87,24 +87,24 @@ public class TidySplitsNavigator {
     return primaryNavigationController
   }
   
-  open func push<TCtrl: TidySplitsChildControllerProtocol>(_ ctrl: TCtrl) {
+  open func push(_ ctrl: TidySplitsChildControllerProtocol) {
     if self.currentHorizontalClass == .regular {
       if ctrl.prefferedDisplayType == .Detail {
         detailChilds.append(ctrl)
         if let detailNav = self.detailNavigationController {
-          detailNav.pushViewController(ctrl, animated: true)
+          detailNav.pushViewController(ctrl as! UIViewController, animated: true)
         } else {
-          detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl, .Detail)
+          detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl as! UIViewController, .Detail)
         }
       } else {
         primaryChilds.append(ctrl)
-        primaryNavigationController.pushViewController(ctrl, animated: true)
+        primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: true)
       }
     } else {
       ctrl.prefferedDisplayType == .Detail
         ? detailChilds.append(ctrl)
         : primaryChilds.append(ctrl)
-      primaryNavigationController.pushViewController(ctrl, animated: true)
+      primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: true)
     }
   }
   

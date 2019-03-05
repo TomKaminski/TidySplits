@@ -27,7 +27,7 @@ open class TidySplitsUINavigationController: UINavigationController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  open func pushToMe<TCtrl: TidySplitsChildControllerProtocol>(_ ctrl: TCtrl) {
+  open func pushToMe(_ ctrl: TidySplitsChildControllerProtocol) {
     var remappedCtrl = ctrl
     remappedCtrl.prefferedDisplayType = self.type
     self.tidySplitController?.push(remappedCtrl)
