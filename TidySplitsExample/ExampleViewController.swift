@@ -63,7 +63,7 @@ class ExampleViewController: TidySplitsUIViewController {
   @objc func pushPrimary() {
     let ctrl = ExampleViewController(.Primary)
     ctrl.view.backgroundColor = .blue
-    self.tidySplitController?.push(ctrl)
+    self.tidyNavigationController?.pushViewController(ctrl, animated: true)
   }
   
   @objc func pushSecondary() {

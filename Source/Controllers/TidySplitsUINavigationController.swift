@@ -44,4 +44,8 @@ open class TidySplitsUINavigationController: UINavigationController {
     ctrl.prefferedDisplayType = self.type
     self.tidySplitController?.push(ctrl, animated: animated)
   }
+  
+  open func pushViewController(_ viewController: TidySplitsChildControllerProtocol, _ animated: Bool) {
+    self.tidySplitController?.push(viewController, animated: animated)
+  }
 }
