@@ -31,7 +31,7 @@ public extension TidySplitsChildControllerProtocol {
     return self.tidySplitController?.pop(from: self.prefferedDisplayType)
   }
   
-  internal func postPopSelfNotification() {
+  public func postPopSelfNotification() {
     if self.isMovingFromParent && tidySplitController?.remapingInProgress == false {
       if self.prefferedDisplayType == .Detail {
         NotificationCenter.default.post(name: .TidySplitsControllerDetailChildPopped, object: nil)
