@@ -8,16 +8,17 @@
 
 import UIKit
 
-public protocol TidySplitsChildControllerProtocol where Self: UIViewController {
+public protocol TidySplitsChildControllerProtocol{
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
   var tidySplitController: TidySplitsUISplitViewController? { get }
   var tidyNavigationController: TidySplitsUINavigationController? { get }
   
+  func postPopSelfNotification()
   func popSelf() -> UIViewController?
 }
 
-public extension TidySplitsChildControllerProtocol {
+public extension TidySplitsChildControllerProtocol where Self: UIViewController  {
   var tidySplitController: TidySplitsUISplitViewController? {
     return self.navigationController?.parent as? TidySplitsUISplitViewController
   }
