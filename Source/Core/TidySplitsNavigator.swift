@@ -14,8 +14,8 @@ public class TidySplitsNavigator {
   var primaryChilds: [TidySplitsChildControllerProtocol]
   var detailChilds: [TidySplitsChildControllerProtocol]
   
-  var primaryNavigationController: UINavigationController!
-  var detailNavigationController: UINavigationController?
+  var primaryNavigationController: TidySplitsUINavigationController!
+  var detailNavigationController: TidySplitsUINavigationController?
   var currentHorizontalClass: UIUserInterfaceSizeClass
   
   var remapingInProgress: Bool = false
@@ -54,11 +54,11 @@ public class TidySplitsNavigator {
     
     performRemapping {
       if primaryNavigationController == nil {
-        primaryNavigationController = UINavigationController()
+        primaryNavigationController = TidySplitsUINavigationController(.Primary)
       }
       primaryNavigationController.viewControllers = primaryChilds as! [UIViewController]
       
-      detailNavigationController = UINavigationController()
+      detailNavigationController = TidySplitsUINavigationController(.Detail)
       if detailChilds.isEmpty {
         //TODO
         let defaultDetail = delegate!.getDetailPlaceholderController()
@@ -73,7 +73,7 @@ public class TidySplitsNavigator {
   @discardableResult open func getCompactStack(omitDetailChilds: Bool) -> UINavigationController {
     performRemapping {
       if primaryNavigationController == nil {
-        primaryNavigationController = UINavigationController()
+        primaryNavigationController = TidySplitsUINavigationController(.Primary)
       }
       
       var ctrls = primaryChilds
@@ -94,7 +94,7 @@ public class TidySplitsNavigator {
         if let detailNav = self.detailNavigationController {
           detailNav.pushViewController(ctrl, animated: true)
         } else {
-          detailNavigationController = UINavigationController(rootViewController: ctrl)
+          detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl, .Detail)
         }
       } else {
         primaryChilds.append(ctrl)

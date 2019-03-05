@@ -11,13 +11,20 @@ import UIKit
 
 public protocol TidySplitsChildControllerProtocol where Self: UIViewController {
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType! { get set }
+  
   var tidySplitController: TidySplitsUISplitViewController? { get }
+  var tidyNavigationController: TidySplitsUINavigationController? { get }
+  
   func popSelf() -> UIViewController?
 }
 
 public extension TidySplitsChildControllerProtocol {
   var tidySplitController: TidySplitsUISplitViewController? {
     return self.navigationController?.parent as? TidySplitsUISplitViewController
+  }
+  
+  var tidyNavigationController: TidySplitsUINavigationController? {
+    return self.navigationController as? TidySplitsUINavigationController
   }
   
   @discardableResult func popSelf() -> UIViewController? {

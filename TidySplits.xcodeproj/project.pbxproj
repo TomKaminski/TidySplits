@@ -19,6 +19,7 @@
 		762351B1222D7C67007E5067 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B0222D7C67007E5067 /* ExampleViewController.swift */; };
 		762351B3222D7F8D007E5067 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B2222D7F8D007E5067 /* MainSplitViewController.swift */; };
 		762351B8222D8F1E007E5067 /* TidySplitsNavigatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */; };
+		7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */; };
 		76F256F0222D308400BDE759 /* TidySplits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; };
 		76F256F5222D308400BDE759 /* TidySplitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F256F4222D308400BDE759 /* TidySplitsTests.swift */; };
 		76F256F7222D308400BDE759 /* TidySplits.h in Headers */ = {isa = PBXBuildFile; fileRef = 76F256E9222D308300BDE759 /* TidySplits.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +63,7 @@
 		762351B0222D7C67007E5067 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		762351B2222D7F8D007E5067 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsNavigatorDelegate.swift; sourceTree = "<group>"; };
+		7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUINavigationController.swift; sourceTree = "<group>"; };
 		76F256E6222D308300BDE759 /* TidySplits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TidySplits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F256E9222D308300BDE759 /* TidySplits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TidySplits.h; sourceTree = "<group>"; };
 		76F256EA222D308300BDE759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				76235192222D6E76007E5067 /* TidySplitsUISplitViewController.swift */,
 				76235194222D6EDA007E5067 /* TidySplitsUITableViewController.swift */,
 				76235196222D6EE9007E5067 /* TidySplitsUITabBarViewController.swift */,
+				7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				76235191222D6D31007E5067 /* TidySplitsNavigator.swift in Sources */,
 				76F25710222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift in Sources */,
 				76235197222D6EE9007E5067 /* TidySplitsUITabBarViewController.swift in Sources */,
+				7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */,
 				76235195222D6EDA007E5067 /* TidySplitsUITableViewController.swift in Sources */,
 				76F2570D222D339200BDE759 /* TidySplitsChildControllerProtocol.swift in Sources */,
 				76235199222D70AF007E5067 /* TidySplitsSplitViewDelegate.swift in Sources */,
