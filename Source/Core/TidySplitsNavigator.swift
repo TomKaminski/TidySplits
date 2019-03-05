@@ -87,27 +87,31 @@ public class TidySplitsNavigator {
     return primaryNavigationController
   }
   
-  open func push(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
+  open func push(_ ctrl: UIViewController, animated: Bool = true) {
+    guard let mappedCtrl = ctrl as? TidySplitsChildControllerProtocol else {
+      return
+    }
+    
     if self.currentHorizontalClass == .regular {
-      if ctrl.prefferedDisplayType == .Detail {
-        detailChilds.append(ctrl)
+      if mappedCtrl.prefferedDisplayType == .Detail {
+        detailChilds.append(mappedCtrl)
         if let detailNav = self.detailNavigationController {
-          detailNav.pushViewController(ctrl as! UIViewController, animated: animated)
+          detailNav.pushViewController(ctrl, animated: animated)
         } else {
-          detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl as! UIViewController, .Detail)
+          detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl, .Detail)
         }
       } else {
-        primaryChilds.append(ctrl)
-        primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
+        primaryChilds.append(mappedCtrl)
+        primaryNavigationController.pushViewController(ctrl, animated: animated)
       }
     } else {
-      if ctrl.prefferedDisplayType == .Detail {
-        detailChilds.append(ctrl)
+      if mappedCtrl.prefferedDisplayType == .Detail {
+        detailChilds.append(mappedCtrl)
       } else {
-        primaryChilds.append(ctrl)
+        primaryChilds.append(mappedCtrl)
       }
       
-      primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
+      primaryNavigationController.pushViewController(ctrl, animated: animated)
     }
   }
   

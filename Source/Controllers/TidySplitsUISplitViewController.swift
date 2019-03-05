@@ -86,7 +86,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     super.viewWillLayoutSubviews()
   }
   
-  open func push(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
+  open func push(_ ctrl: UIViewController, animated: Bool = true) {
     self.navigator.push(ctrl, animated: animated)
   }
   
