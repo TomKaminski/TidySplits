@@ -27,19 +27,21 @@ open class TidySplitsUINavigationController: UINavigationController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  open func pushToMe(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
-    var remappedCtrl = ctrl
-    remappedCtrl.prefferedDisplayType = self.type
-    self.tidySplitController?.push(remappedCtrl, animated: animated)
-  }
-  
-  open func popFromMe(animated: Bool = true) {
-    self.tidySplitController?.pop(from: self.type, animated: animated)
-  }
-  
   @discardableResult open func replaceLast(_ newCtrl: TidySplitsChildControllerProtocol, animated: Bool = true) -> TidySplitsChildControllerProtocol {
     let poppedCtrl = self.tidySplitController?.pop(from: self.type, animated: false)
     self.tidySplitController?.push(newCtrl, animated: animated)
     return poppedCtrl as! TidySplitsChildControllerProtocol
+  }
+  
+  override open func popViewController(animated: Bool) -> UIViewController? {
+    return self.tidySplitController?.pop(from: self.type, animated: animated)
+  }
+  
+  override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    guard var ctrl = viewController as? TidySplitsChildControllerProtocol else {
+      return
+    }
+    ctrl.prefferedDisplayType = self.type
+    self.tidySplitController?.push(ctrl, animated: animated)
   }
 }

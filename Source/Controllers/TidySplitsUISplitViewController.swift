@@ -15,6 +15,14 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
+  var primaryChilds: [TidySplitsChildControllerProtocol] {
+    return self.navigator.primaryChilds
+  }
+  
+  var detailChilds: [TidySplitsChildControllerProtocol] {
+    return self.navigator.detailChilds
+  }
+  
   var multiplierForPrimaryRegularWidth: CGFloat {
     return 0.35
   }
