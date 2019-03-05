@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "TidySplits"
-  spec.version = "0.0.17"
+  spec.version = "0.0.18"
   spec.swift_version = "4.2"
   spec.summary = "Another approach for SplitView layout written in Swift. Simple. Powerful."
   spec.homepage = "https://github.com/TomKaminski/TidySplits"
