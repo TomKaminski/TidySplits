@@ -101,9 +101,10 @@ public class TidySplitsNavigator {
         primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
       }
     } else {
-      ctrl.prefferedDisplayType == .Detail
-        ? detailChilds.append(ctrl)
-        : primaryChilds.append(ctrl)
+      print(ctrl.prefferedDisplayType)
+      print(detailChilds)
+      print(primaryChilds)
+      ctrl.prefferedDisplayType == .Detail ? detailChilds.append(ctrl) : primaryChilds.append(ctrl)
       primaryNavigationController.pushViewController(ctrl as! UIViewController, animated: animated)
     }
   }
