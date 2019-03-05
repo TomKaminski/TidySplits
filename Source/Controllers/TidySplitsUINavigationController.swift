@@ -27,25 +27,27 @@ open class TidySplitsUINavigationController: UINavigationController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @discardableResult open func replaceLast(_ newCtrl: TidySplitsChildControllerProtocol, animated: Bool = true) -> TidySplitsChildControllerProtocol {
-    let poppedCtrl = self.tidySplitController?.pop(from: self.type, animated: false)
-    self.tidySplitController?.push(newCtrl, animated: animated)
-    return poppedCtrl as! TidySplitsChildControllerProtocol
+  open func pushToMe(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
+    var remappedCtrl = ctrl
+    remappedCtrl.prefferedDisplayType = self.type
+    self.tidySplitController?.push(remappedCtrl, animated: animated)
   }
   
-  override open func popViewController(animated: Bool) -> UIViewController? {
-    return self.tidySplitController?.pop(from: self.type, animated: animated)
-  }
-  
-  override open func pushViewController(_ viewController: UIViewController, animated: Bool) {
-    guard var ctrl = viewController as? TidySplitsChildControllerProtocol else {
+  open func pushToMe(_ ctrl: UIViewController, _ animated: Bool = true) {
+    guard var ctrl = ctrl as? TidySplitsChildControllerProtocol else {
       return
     }
     ctrl.prefferedDisplayType = self.type
     self.tidySplitController?.push(ctrl, animated: animated)
   }
   
-  open func pushViewController(_ viewController: TidySplitsChildControllerProtocol, _ animated: Bool) {
-    self.tidySplitController?.push(viewController, animated: animated)
+  open func popFromMe(animated: Bool = true) {
+    self.tidySplitController?.pop(from: self.type, animated: animated)
+  }
+  
+  @discardableResult open func replaceLast(_ newCtrl: TidySplitsChildControllerProtocol, animated: Bool = true) -> TidySplitsChildControllerProtocol {
+    let poppedCtrl = self.tidySplitController?.pop(from: self.type, animated: false)
+    self.tidySplitController?.push(newCtrl, animated: animated)
+    return poppedCtrl as! TidySplitsChildControllerProtocol
   }
 }
