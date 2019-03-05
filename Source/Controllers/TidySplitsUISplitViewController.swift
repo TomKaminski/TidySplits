@@ -15,6 +15,10 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
+  var multiplierForPrimaryRegularWidth: CGFloat {
+    return 0.35
+  }
+  
   override open func viewDidLoad() {
     super.viewDidLoad()
     
@@ -62,7 +66,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
       NSLayoutConstraint.activate(
         regularPrimaryConstraints +
           [
-            self.navigator.detailNavigationController!.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.7),
+            self.navigator.detailNavigationController!.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: CGFloat(1) - self.multiplierForPrimaryRegularWidth),
             self.navigator.detailNavigationController!.view.heightAnchor.constraint(equalTo: self.view.heightAnchor),
             self.navigator.detailNavigationController!.view.leadingAnchor.constraint(equalTo: self.navigator.primaryNavigationController.view.trailingAnchor)
         ])
@@ -124,7 +128,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   
   private func setRegularPrimaryConstraints() {
     self.regularPrimaryConstraints.append(contentsOf: [
-      self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3)
+      self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: self.multiplierForPrimaryRegularWidth)
       ])
   }
   
