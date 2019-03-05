@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class TidySplitsUITabBarViewController : UITableViewController, TidySplitsChildControllerProtocol {
+open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChildControllerProtocol {
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType!
   
   init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {

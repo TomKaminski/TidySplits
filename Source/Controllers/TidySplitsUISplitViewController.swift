@@ -86,6 +86,14 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     return self.navigator.remapingInProgress
   }
   
+  public var primaryNavigationController: UINavigationController {
+    return navigator.primaryNavigationController
+  }
+  
+  public var detailNavigationController: UINavigationController? {
+    return navigator.detailNavigationController
+  }
+  
   open func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol {
     return self.delegate?.getDetailPlaceholderController() ?? TidySplitsUIViewController(.Detail)
   }
