@@ -48,9 +48,7 @@ public class TidySplitsNavigator {
   }
   
   @discardableResult open func getRegularStacks() -> (UINavigationController, UINavigationController) {
-    guard !primaryChilds.isEmpty else {
-      fatalError("Primary childs must not be empty.")
-    }
+    assert(!primaryChilds.isEmpty, "Primary childs must not be empty.")
     
     performRemapping {
       if primaryNavigationController == nil {
@@ -87,30 +85,24 @@ public class TidySplitsNavigator {
     return primaryNavigationController
   }
   
-  open func push(_ ctrl: UIViewController, animated: Bool = true) {
-    guard let mappedCtrl = ctrl as? TidySplitsChildControllerProtocol else {
-      return
-    }
-    
-    print(mappedCtrl)
-    
+  open func push<TCtrl: TidySplitsChildControllerProtocol>(_ ctrl: TCtrl, animated: Bool = true) {
     if self.currentHorizontalClass == .regular {
-      if mappedCtrl.prefferedDisplayType == .Detail {
-        detailChilds.append(mappedCtrl)
+      if ctrl.prefferedDisplayType == .Detail {
+        detailChilds.append(ctrl)
         if let detailNav = self.detailNavigationController {
           detailNav.pushViewController(ctrl, animated: animated)
         } else {
           detailNavigationController = TidySplitsUINavigationController(rootViewController: ctrl, .Detail)
         }
       } else {
-        primaryChilds.append(mappedCtrl)
+        primaryChilds.append(ctrl)
         primaryNavigationController.pushViewController(ctrl, animated: animated)
       }
     } else {
-      if mappedCtrl.prefferedDisplayType == .Detail {
-        detailChilds.append(mappedCtrl)
+      if ctrl.prefferedDisplayType == .Detail {
+        detailChilds.append(ctrl)
       } else {
-        primaryChilds.append(mappedCtrl)
+        primaryChilds.append(ctrl)
       }
       
       primaryNavigationController.pushViewController(ctrl, animated: animated)
