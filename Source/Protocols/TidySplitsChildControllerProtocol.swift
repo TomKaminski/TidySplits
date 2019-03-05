@@ -6,7 +6,6 @@
 //  Copyright © 2019 Tomasz Kaminski. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 public protocol TidySplitsChildControllerProtocol where Self: UIViewController {

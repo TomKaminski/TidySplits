@@ -92,6 +92,8 @@ public class TidySplitsNavigator {
       return
     }
     
+    print(mappedCtrl)
+    
     if self.currentHorizontalClass == .regular {
       if mappedCtrl.prefferedDisplayType == .Detail {
         detailChilds.append(mappedCtrl)
