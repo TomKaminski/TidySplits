@@ -15,6 +15,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
+  //TODO: Remove when Breakpoints feature is implemented
   var primaryChilds: [TidySplitsChildControllerProtocol] {
     return self.navigator.primaryChilds
   }
@@ -23,7 +24,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     return self.navigator.detailChilds
   }
   
-  var multiplierForPrimaryRegularWidth: CGFloat {
+  open var multiplierForPrimaryRegularWidth: CGFloat {
     return 0.35
   }
   
@@ -86,19 +87,16 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     super.viewWillLayoutSubviews()
   }
   
-  open func push(_ ctrl: TidySplitsChildControllerProtocol, animated: Bool = true) {
-    self.navigator.push(ctrl, animated: animated)
+  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
+    self.navigator.push(controller, animated)
   }
   
-  open func push(baseCtrl: UIViewController, animated: Bool = true) {
-    guard let ctrl = baseCtrl as? TidySplitsChildControllerProtocol else {
-      return
-    }
-    self.navigator.push(ctrl, animated: animated)
+  open func tryPush(_ controller : UIViewController, _ animated: Bool = true) -> Bool {
+    return self.navigator.tryPush(controller, animated)
   }
   
-  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, animated: Bool = true) -> UIViewController? {
-    return self.navigator.pop(from: type, animated: animated)
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true) -> UIViewController? {
+    return self.navigator.pop(from: type, animated)
   }
   
   public var remapingInProgress: Bool {

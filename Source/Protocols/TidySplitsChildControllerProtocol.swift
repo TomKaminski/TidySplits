@@ -8,7 +8,10 @@
 
 import UIKit
 
-public protocol TidySplitsChildControllerProtocol{
+// NOTE: XCode 10.1 has a bug
+// https://stackoverflow.com/questions/49662283/swift-inheriting-protocol-does-not-inherit-generic-where-constraint
+// so we cannot constrain protocol to UIViewController...
+public protocol TidySplitsChildControllerProtocol: class {
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
   var tidySplitController: TidySplitsUISplitViewController? { get }
