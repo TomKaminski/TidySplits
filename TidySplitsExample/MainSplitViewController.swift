@@ -10,7 +10,6 @@ import Foundation
 import TidySplits
 
 class ExampleSplitViewController: TidySplitsUISplitViewController, TidySplitsSplitViewDelegate {
-  
   var shouldOmitDetailChildsForCompactMode: Bool {
     return false
   }
@@ -20,7 +19,7 @@ class ExampleSplitViewController: TidySplitsUISplitViewController, TidySplitsSpl
     super.viewDidLoad()
   }
   
-  override func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol {
+  func getDetailsPlaceholder() -> TidySplitsChildControllerProtocol {
     let ctrl = ExampleViewController(.Detail)
     ctrl.view.backgroundColor = .green
     return ctrl

@@ -45,12 +45,14 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     self.setSharedPrimaryConstraints()
     self.setCompactPrimaryConstraints()
     self.setRegularPrimaryConstraints()
+    self.toggleContraints()
   }
   
   override open func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
     super.willTransition(to: newCollection, with: coordinator)
     
     if newCollection.horizontalSizeClass != navigator.currentHorizontalClass {
+      print("Will transition")
       navigator.currentHorizontalClass = newCollection.horizontalSizeClass
       if navigator.currentHorizontalClass == .compact {
         self.navigator.detailNavigationController?.willMove(toParent: nil)
@@ -63,27 +65,27 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
         view.addSubview(self.navigator.detailNavigationController!.view)
         self.navigator.detailNavigationController!.didMove(toParent: self)
       }
+      
+      self.toggleContraints()
     }
   }
   
-  open override func viewWillLayoutSubviews() {
+  private func toggleContraints() {
     self.navigator.detailNavigationController?.view.translatesAutoresizingMaskIntoConstraints = false
-    
     if navigator.currentHorizontalClass == .regular {
       NSLayoutConstraint.deactivate(compactPrimaryConstraints)
       NSLayoutConstraint.activate(
         regularPrimaryConstraints +
           [
             self.navigator.detailNavigationController!.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: CGFloat(1) - self.multiplierForPrimaryRegularWidth),
-            self.navigator.detailNavigationController!.view.heightAnchor.constraint(equalTo: self.view.heightAnchor),
-            self.navigator.detailNavigationController!.view.leadingAnchor.constraint(equalTo: self.navigator.primaryNavigationController.view.trailingAnchor)
+            self.navigator.detailNavigationController!.view.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.navigator.detailNavigationController!.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.navigator.detailNavigationController!.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     } else {
       NSLayoutConstraint.deactivate(regularPrimaryConstraints)
       NSLayoutConstraint.activate(compactPrimaryConstraints)
     }
-    
-    super.viewWillLayoutSubviews()
   }
   
   open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
@@ -115,7 +117,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   }
   
   open func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol {
-    return self.delegate?.getDetailPlaceholderController() ?? TidySplitsUIViewController(.Detail)
+    return self.delegate?.getDetailsPlaceholder() ?? TidySplitsUIViewController(.Detail)
   }
   
   private func computeCompactChilds() {
@@ -139,7 +141,11 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   
   private func setSharedPrimaryConstraints() {
     self.navigator.primaryNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
-    self.navigator.primaryNavigationController.view.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+    NSLayoutConstraint.activate([
+      self.navigator.primaryNavigationController.view.topAnchor.constraint(equalTo: self.view.topAnchor),
+      self.navigator.primaryNavigationController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+      self.navigator.primaryNavigationController.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+    ])
   }
   
   private func setRegularPrimaryConstraints() {
@@ -151,7 +157,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private func setCompactPrimaryConstraints() {
     self.compactPrimaryConstraints.append(contentsOf: [
       self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor)
-      ])
+    ])
   }
   
   fileprivate func addChildController(_ ctrl: UINavigationController) {

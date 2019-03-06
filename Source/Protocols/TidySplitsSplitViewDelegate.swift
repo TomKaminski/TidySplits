@@ -11,5 +11,5 @@ public protocol TidySplitsSplitViewDelegate: class {
 
   func getInitialPrimaryControllers() -> [TidySplitsChildControllerProtocol]
   func getInitialDetailControllers() -> [TidySplitsChildControllerProtocol]
-  func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol
+  func getDetailsPlaceholder() -> TidySplitsChildControllerProtocol
 }
