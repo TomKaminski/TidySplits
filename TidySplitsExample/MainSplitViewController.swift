@@ -12,7 +12,7 @@ import TidySplits
 class ExampleSplitViewController: TidySplitsUISplitViewController, TidySplitsSplitViewDelegate {
   
   var shouldOmitDetailChildsForCompactMode: Bool {
-    return true
+    return false
   }
   
   override func viewDidLoad() {

@@ -77,6 +77,22 @@ public class TidySplitsNavigator {
   // MARK: Navigation methods
   // ------------------------
 
+  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
+    assert(controller.prefferedDisplayType == .Detail, "So you want to show in detail context but with primary controller. Where is the logic here? Think about it bro.")
+    
+    if self.currentHorizontalClass == .regular {
+      detailChilds = [controller]
+      if let detailNav = self.detailNavigationController {
+        detailNav.setViewControllers(detailChilds as! [UIViewController], animated: true)
+      } else {
+        detailNavigationController = TidySplitsUINavigationController(rootViewController: controller as! UIViewController, .Detail)
+      }
+    } else {
+      detailChilds.append(controller)
+      primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
+    }
+  }
+  
   open func tryPush(_ controller: UIViewController, _ animated: Bool = true) -> Bool {
     guard let controller = controller as? TidySplitsUIViewController else {
       return false
