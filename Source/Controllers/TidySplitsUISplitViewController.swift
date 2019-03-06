@@ -16,11 +16,11 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
   //TODO: Remove when Breakpoints feature is implemented
-  var primaryChilds: [TidySplitsChildControllerProtocol] {
+  public var primaryChilds: [TidySplitsChildControllerProtocol] {
     return self.navigator.primaryChilds
   }
   
-  var detailChilds: [TidySplitsChildControllerProtocol] {
+  public var detailChilds: [TidySplitsChildControllerProtocol] {
     return self.navigator.detailChilds
   }
   
