@@ -11,18 +11,9 @@ import UIKit
 open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigatorDelegate {
   public weak var delegate: TidySplitsSplitViewDelegate?
 
-  internal var navigator: TidySplitsNavigator!
+  public var navigator: TidySplitsNavigator!
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
-  
-  //TODO: Remove when Breakpoints feature is implemented
-  public var primaryChilds: [TidySplitsChildControllerProtocol] {
-    return self.navigator.primaryChilds
-  }
-  
-  public var detailChilds: [TidySplitsChildControllerProtocol] {
-    return self.navigator.detailChilds
-  }
   
   open var multiplierForPrimaryRegularWidth: CGFloat {
     return 0.35
