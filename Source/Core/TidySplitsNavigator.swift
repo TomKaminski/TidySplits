@@ -11,12 +11,12 @@ import UIKit
 public class TidySplitsNavigator {
   weak var delegate: TidySplitsNavigatorDelegate?
   
-  var primaryChilds: [TidySplitsChildControllerProtocol]
-  var detailChilds: [TidySplitsChildControllerProtocol]
-  
+  public var primaryChilds: [TidySplitsChildControllerProtocol]
+  public var detailChilds: [TidySplitsChildControllerProtocol]
+  public var currentHorizontalClass: UIUserInterfaceSizeClass
+
   var primaryNavigationController: TidySplitsUINavigationController!
   var detailNavigationController: TidySplitsUINavigationController?
-  var currentHorizontalClass: UIUserInterfaceSizeClass
   
   var remapingInProgress: Bool = false
   
