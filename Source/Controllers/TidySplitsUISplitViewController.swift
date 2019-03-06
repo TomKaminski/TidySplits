@@ -56,7 +56,6 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
         self.navigator.detailNavigationController?.willMove(toParent: nil)
         self.navigator.detailNavigationController?.removeFromParent()
         self.navigator.detailNavigationController?.view.removeFromSuperview()
-        self.navigator.detailNavigationController = nil
         computeCompactChilds()
       } else {
         computeRegularChilds()
