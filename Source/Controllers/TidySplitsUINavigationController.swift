@@ -27,28 +27,32 @@ open class TidySplitsUINavigationController: UINavigationController {
     fatalError("init(coder:) has not been implemented")
   }
   
-  open func pushToMe(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
+  open func pushToMe(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     controller.prefferedDisplayType = self.type
     self.tidySplitController?.push(controller, animated)
+    completion?(controller)
   }
   
-  open func tryPushToMe(_ controller: UIViewController, _ animated: Bool = true) -> Bool {
+  open func tryPushToMe(_ controller: UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool {
     guard let controller = controller as? TidySplitsChildControllerProtocol else {
       return false
     }
     
     controller.prefferedDisplayType = self.type
     self.tidySplitController?.push(controller, animated)
+    completion?(controller)
     return true
   }
   
-  open func popFromMe(animated: Bool = true) {
-    self.tidySplitController?.pop(from: self.type, animated)
+  open func popFromMe(animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) {
+    let poppedCtrl = self.tidySplitController?.pop(from: self.type, animated)
+    completion?(poppedCtrl)
   }
   
-  @discardableResult open func replaceLast(_ newCtrl: TidySplitsChildControllerProtocol, animated: Bool = true) -> TidySplitsChildControllerProtocol {
+  @discardableResult open func replaceLast(_ newCtrl: TidySplitsChildControllerProtocol, animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> TidySplitsChildControllerProtocol {
     let poppedCtrl = self.tidySplitController?.pop(from: self.type, false)
     self.tidySplitController?.push(newCtrl, animated)
+    completion?(newCtrl)
     return poppedCtrl as! TidySplitsChildControllerProtocol
   }
 }

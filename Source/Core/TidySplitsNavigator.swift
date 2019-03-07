@@ -77,7 +77,7 @@ public class TidySplitsNavigator {
   // MARK: Navigation methods
   // ------------------------
 
-  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
+  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller.prefferedDisplayType == .Detail, "So you want to show in detail context but with primary controller. Where is the logic here? Think about it bro.")
     detailChilds = [controller]
     if self.currentHorizontalClass == .regular {
@@ -89,18 +89,20 @@ public class TidySplitsNavigator {
     } else {
       primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
     }
+    completion?(controller)
   }
   
-  open func tryPush(_ controller: UIViewController, _ animated: Bool = true) -> Bool {
+  open func tryPush(_ controller: UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool {
     guard let controller = controller as? TidySplitsUIViewController else {
       return false
     }
     
     self.push(controller)
+    completion?(controller)
     return true
   }
   
-  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
+  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller as? UIViewController != nil, "Subclass of UIViewController must be pushed to this function only.")
     
     if self.currentHorizontalClass == .regular {
@@ -124,20 +126,25 @@ public class TidySplitsNavigator {
       
       primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
     }
+    
+    completion?(controller)
   }
   
-  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true) -> UIViewController? {
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
     if self.currentHorizontalClass == .regular {
       if type == .Detail && detailChilds.count > 1 {
-        return self.detailNavigationController?.popViewController(animated: animated)
+        let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
+        completion?(poppedCtrl)
       }
       
       if type == .Primary && primaryChilds.count > 1 {
-        return self.primaryNavigationController.popViewController(animated: animated)
+        let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+        completion?(poppedCtrl)
       }
     } else {
       if !detailChilds.isEmpty || primaryChilds.count > 1 {
-        return self.primaryNavigationController.popViewController(animated: animated)
+        let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+        completion?(poppedCtrl)
       }
     }
     

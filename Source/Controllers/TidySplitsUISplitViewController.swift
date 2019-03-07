@@ -79,20 +79,20 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     }
   }
   
-  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
-    self.navigator.showDetail(controller, animated)
+  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
+    self.navigator.showDetail(controller, animated, completion)
   }
   
-  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true) {
-    self.navigator.push(controller, animated)
+  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
+    self.navigator.push(controller, animated, completion)
   }
   
-  open func tryPush(_ controller : UIViewController, _ animated: Bool = true) -> Bool {
-    return self.navigator.tryPush(controller, animated)
+  open func tryPush(_ controller : UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool {
+    return self.navigator.tryPush(controller, animated, completion)
   }
   
-  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true) -> UIViewController? {
-    return self.navigator.pop(from: type, animated)
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
+    return self.navigator.pop(from: type, animated, completion)
   }
   
   public var remapingInProgress: Bool {
