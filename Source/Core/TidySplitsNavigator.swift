@@ -82,7 +82,7 @@ public class TidySplitsNavigator {
     detailChilds = [controller]
     if self.currentHorizontalClass == .regular {
       if let detailNav = self.detailNavigationController {
-        detailNav.setViewControllers(detailChilds as! [UIViewController], animated: true)
+        detailNav.setViewControllers(detailChilds as! [UIViewController], animated: animated)
       } else {
         detailNavigationController = TidySplitsUINavigationController(rootViewController: controller as! UIViewController, .Detail)
       }
@@ -163,7 +163,9 @@ public class TidySplitsNavigator {
   }
   
   @objc private func popPrimaryChildFromStack() {
-    primaryChilds.safeRemoveLast()
+    if primaryChilds.count > 1 {
+      primaryChilds.safeRemoveLast()
+    }
   }
   
   private func performRemapping(_ remapFunc: () -> Void) {
