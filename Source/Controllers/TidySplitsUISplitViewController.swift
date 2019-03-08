@@ -61,6 +61,10 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     }
   }
   
+  open func createDetailController() -> TidySplitsUINavigationController {
+    return TidySplitsUINavigationController(.Detail)
+  }
+  
   private func toggleContraints() {
     self.navigator.detailNavigationController?.view.translatesAutoresizingMaskIntoConstraints = false
     if navigator.currentHorizontalClass == .regular {

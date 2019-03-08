@@ -44,9 +44,9 @@ public class TidySplitsNavigator {
       }
       primaryNavigationController.viewControllers = primaryChilds as! [UIViewController]
       
-      detailNavigationController = TidySplitsUINavigationController(.Detail)
+      
+      detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
       if detailChilds.isEmpty {
-        //TODO
         let defaultDetail = delegate!.getDetailPlaceholderController()
         detailChilds.append(defaultDetail)
       }
@@ -84,7 +84,8 @@ public class TidySplitsNavigator {
       if let detailNav = self.detailNavigationController {
         detailNav.setViewControllers(detailChilds as! [UIViewController], animated: animated)
       } else {
-        detailNavigationController = TidySplitsUINavigationController(rootViewController: controller as! UIViewController, .Detail)
+        detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
+        detailNavigationController?.viewControllers = [controller] as! [UIViewController]
       }
     } else {
       primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
@@ -111,7 +112,8 @@ public class TidySplitsNavigator {
         if let detailNav = self.detailNavigationController {
           detailNav.pushViewController(controller as! UIViewController, animated: animated)
         } else {
-          detailNavigationController = TidySplitsUINavigationController(rootViewController: controller as! UIViewController, .Detail)
+          detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
+          detailNavigationController?.viewControllers = [controller] as! [UIViewController]
         }
       } else {
         primaryChilds.append(controller)

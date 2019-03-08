@@ -8,5 +8,6 @@
 
 public protocol TidySplitsNavigatorDelegate: class {
   func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol
+  func createDetailController() -> TidySplitsUINavigationController
 }
 
