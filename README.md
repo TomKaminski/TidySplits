@@ -192,6 +192,13 @@ Additionally child can `popSelf()` :)
 
 That's nice, I wrote it in a hurry in ~8 hours. I am 100% that you will find something. Create an issue and we can make it better, together :).
 
+## TODO:
+
+* Teleports feature
+* Breakpoints feature
+* Expose better configuration options
+* Document code
+
 ## Contributing
 
 Just submit a pull request.
