@@ -8,6 +8,12 @@
 
 public protocol TidySplitsNavigatorDelegate: class {
   func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol
+  
+  /**
+   Delegate method which allows to override crated TidySplitsUINavigationController.
+   
+   For example in this method you can disable or enable isTranslucent property of your NavigationBar.
+   */
   func createDetailController() -> TidySplitsUINavigationController
 }
 

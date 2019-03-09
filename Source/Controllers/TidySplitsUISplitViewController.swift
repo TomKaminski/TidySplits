@@ -15,8 +15,15 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
+  /**
+   Percentage value of primary stack width in **regular** layout.
+   */
   open var multiplierForPrimaryRegularWidth: CGFloat {
     return 0.35
+  }
+  
+  public var isCollapsed: Bool {
+    return self.traitCollection.horizontalSizeClass == .compact
   }
   
   override open func viewDidLoad() {
@@ -43,7 +50,6 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     super.willTransition(to: newCollection, with: coordinator)
     
     if newCollection.horizontalSizeClass != navigator.currentHorizontalClass {
-      print("Will transition")
       navigator.currentHorizontalClass = newCollection.horizontalSizeClass
       if navigator.currentHorizontalClass == .compact {
         self.navigator.detailNavigationController?.willMove(toParent: nil)
@@ -83,10 +89,24 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     }
   }
   
+  /**
+   This method replaces current detail stack with specified controller
+   
+   - Parameter controller: Controller which should be placed in details stack as it's root.
+   - Parameter animated: Determines if transition should be animated. Defaults to true.
+   - Parameter completion: Method which should be run after details stack is replaced.
+   */
   open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     self.navigator.showDetail(controller, animated, completion)
   }
   
+  /**
+   This method pushes new controller to primary or detail stack - based on controller's prefered display type.
+   
+   - Parameter controller: Controller to push.
+   - Parameter animated: Determines if transition should be animated. Defaults to true.
+   - Parameter completion: Method which should be run after push.
+   */
   open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     self.navigator.push(controller, animated, completion)
   }
@@ -95,6 +115,13 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     return self.navigator.tryPush(controller, animated, completion)
   }
   
+  /**
+   This method pops currently displayed controller from specified type.
+   
+   - Parameter type: From where should we pop - Primary or Detail
+   - Parameter animated: Determines if transition should be animated. Defaults to true.
+   - Parameter completion: Method which should be run after pop.
+   */
   @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
     return self.navigator.pop(from: type, animated, completion)
   }
