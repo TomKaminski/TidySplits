@@ -38,6 +38,12 @@ To install it via CocoaPods just add this line to your pods file:
 pod 'TidySplits' 
 ```
 
+And then run from your console:
+
+```
+pod install
+```
+
 ## Running the example project
 
 After downloading whole project you can check how it works by running target 'TidySplitsExample'. This project contains simple example how TidySplits should be configured. It's super easy!
