@@ -198,7 +198,7 @@ Just submit a pull request.
 
 ## Authors
 
-* **Tomasz Kamiński** - *Initial work* - [TomKaminski](https://github.com/TomKaminski)
+* **Tomasz Kamiński** - *Creator* - [TomKaminski](https://github.com/TomKaminski)
 
 See also the list of [contributors](https://github.com/TomKaminski/TidySplits/contributors) who participated in this project.
 
