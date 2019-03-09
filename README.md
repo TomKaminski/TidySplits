@@ -128,10 +128,59 @@ public protocol TidySplitsChildControllerProtocol: class {
 
 The most important thing is `preferedDisplayType` property. It determines **where** specific controller should be pushed (Primary or Detail stack).
 
+I have created and defined some base controllers which you can use as a base for your custom controllers:
+ * TidySplitsUIViewController - subclass of UIViewController
+ * TidySplitsUITableViewController - subclass of UITableViewController
+ * TidySplitsUITabBarViewController - subclass of UITabBarController
+
 ### Okay, I have configured my own split controller and created some childs which conforms to `TidySplitsChildControllerProtocol`, what now?
 
 Now you can finally make your app *navigating*! There are several possibilites to perform a navigation.
 
+#### From Split controller
+
+```swift
+  open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil)
+
+  open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil)
+  
+  open func tryPush(_ controller : UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool
+  
+  @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController?
+```
+
+* `showDetail` method replaces current detail stack with specified controller.
+* `push` method pushes new controller to primary or detail stack - based on controller's prefered display type.
+* `tryPush` method tries to push (if it conforms to our ChildProtocol) new controller to primary or detail stack - based on controller's prefered display type.
+* `pop` method pops currently displayed controller from specified type
+
+
+#### From Navigation controller
+
+```swift
+  open func pushToMe(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil)
+  
+  open func tryPushToMe(_ controller: UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool
+  
+  open func popFromMe(animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil)
+```
+
+* `pushToMe` method pushes controller to current navigation **and changes it's prefered type to type of Navigation controller - think about it when using this method!**.
+* `tryPushToMe` method tries to push controller to current navigation (if child conforms to ChildProtocol) **and changes it's prefered type to type of Navigation controller - think about it when using this method!**.
+* `popFromMe` method pops currently displayed controller in this navigation controller
+
+#### From Child controller
+
+Child controller protocol has this properties defined:
+
+```swift
+  var tidySplitController: TidySplitsUISplitViewController? { get }
+  var tidyNavigationController: TidySplitsUINavigationController? { get }
+```
+
+It allows you to use Split/Navigation controllers methods in child code.
+
+Additionally child can `popSelf()` :)
 
 ## I found a bug.
 
@@ -149,5 +198,5 @@ See also the list of [contributors](https://github.com/TomKaminski/TidySplits/co
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details
 
