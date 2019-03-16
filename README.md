@@ -195,7 +195,6 @@ That's nice, I wrote it in a hurry in ~8 hours. I am 100% that you will find som
 ## TODO:
 
 * Teleports feature
-* Breakpoints feature
 * Expose better configuration options
 * Document code
 
