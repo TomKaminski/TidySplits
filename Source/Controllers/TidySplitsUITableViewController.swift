@@ -8,7 +8,8 @@
 
 import UIKit
 
-open class TidySplitsUITableViewController: UITableViewController, TidySplitsChildControllerProtocol {
+open class TidySplitsUITableViewController: UITableViewController, TidySplitsCheckpointControllerProtocol {
+  public var associatedCheckpointKey: String?
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
   
   public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
@@ -24,5 +25,9 @@ open class TidySplitsUITableViewController: UITableViewController, TidySplitsChi
   override open func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     self.postPopSelfNotification()
+    
+    if self.isMovingFromParent {
+      self.removeCheckpoint()
+    }
   }
 }

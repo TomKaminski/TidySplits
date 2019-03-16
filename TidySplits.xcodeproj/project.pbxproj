@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760B1F17223D121000228E33 /* TidySplitsCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */; };
+		760B1F19223D138600228E33 /* TidySplitsCheckpointsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */; };
+		760B1F1D223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F1C223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift */; };
+		760B1F23223D33B300228E33 /* TidySplits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; };
+		760B1F24223D33B300228E33 /* TidySplits.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76235191222D6D31007E5067 /* TidySplitsNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76235190222D6D31007E5067 /* TidySplitsNavigator.swift */; };
 		76235193222D6E76007E5067 /* TidySplitsUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76235192222D6E76007E5067 /* TidySplitsUISplitViewController.swift */; };
 		76235195222D6EDA007E5067 /* TidySplitsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76235194222D6EDA007E5067 /* TidySplitsUITableViewController.swift */; };
@@ -18,6 +23,7 @@
 		762351B1222D7C67007E5067 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B0222D7C67007E5067 /* ExampleViewController.swift */; };
 		762351B3222D7F8D007E5067 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B2222D7F8D007E5067 /* MainSplitViewController.swift */; };
 		762351B8222D8F1E007E5067 /* TidySplitsNavigatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */; };
+		763254832237A015000013F9 /* ExampleTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763254822237A015000013F9 /* ExampleTabController.swift */; };
 		7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */; };
 		76F256F0222D308400BDE759 /* TidySplits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; };
 		76F256F5222D308400BDE759 /* TidySplitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F256F4222D308400BDE759 /* TidySplitsTests.swift */; };
@@ -31,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		762351B4222D83CF007E5067 /* PBXContainerItemProxy */ = {
+		760B1F25223D33B300228E33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76F256DD222D308300BDE759 /* Project object */;
 			proxyType = 1;
@@ -47,7 +53,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		760B1F27223D33B400228E33 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				760B1F24223D33B300228E33 /* TidySplits.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpoint.swift; sourceTree = "<group>"; };
+		760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpointsManager.swift; sourceTree = "<group>"; };
+		760B1F1C223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpointControllerProtocol.swift; sourceTree = "<group>"; };
 		76235190222D6D31007E5067 /* TidySplitsNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsNavigator.swift; sourceTree = "<group>"; };
 		76235192222D6E76007E5067 /* TidySplitsUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUISplitViewController.swift; sourceTree = "<group>"; };
 		76235194222D6EDA007E5067 /* TidySplitsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUITableViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +84,7 @@
 		762351B0222D7C67007E5067 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		762351B2222D7F8D007E5067 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsNavigatorDelegate.swift; sourceTree = "<group>"; };
+		763254822237A015000013F9 /* ExampleTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTabController.swift; sourceTree = "<group>"; };
 		7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUINavigationController.swift; sourceTree = "<group>"; };
 		76F256E6222D308300BDE759 /* TidySplits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TidySplits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F256E9222D308300BDE759 /* TidySplits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TidySplits.h; sourceTree = "<group>"; };
@@ -81,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760B1F23223D33B300228E33 /* TidySplits.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +127,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760B1F14223D11CE00228E33 /* Teleports */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Teleports;
+			sourceTree = "<group>";
+		};
+		760B1F15223D11D800228E33 /* Checkpoints */ = {
+			isa = PBXGroup;
+			children = (
+				760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */,
+				760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */,
+			);
+			path = Checkpoints;
+			sourceTree = "<group>";
+		};
+		760B1F1E223D33A100228E33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7623519F222D72EF007E5067 /* TidySplitsExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +159,7 @@
 				762351AC222D72F1007E5067 /* Info.plist */,
 				762351B0222D7C67007E5067 /* ExampleViewController.swift */,
 				762351B2222D7F8D007E5067 /* MainSplitViewController.swift */,
+				763254822237A015000013F9 /* ExampleTabController.swift */,
 			);
 			path = TidySplitsExample;
 			sourceTree = "<group>";
@@ -123,6 +172,7 @@
 				76F25704222D30B800BDE759 /* Tests */,
 				7623519F222D72EF007E5067 /* TidySplitsExample */,
 				76F256E7222D308300BDE759 /* Products */,
+				760B1F1E223D33A100228E33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +232,7 @@
 		76F25708222D32C900BDE759 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				760B1F1C223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift */,
 				76F2570C222D339200BDE759 /* TidySplitsChildControllerProtocol.swift */,
 				76235198222D70AF007E5067 /* TidySplitsSplitViewDelegate.swift */,
 				762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */,
@@ -192,6 +243,8 @@
 		76F25709222D32CE00BDE759 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				760B1F15223D11D800228E33 /* Checkpoints */,
+				760B1F14223D11CE00228E33 /* Teleports */,
 				76235190222D6D31007E5067 /* TidySplitsNavigator.swift */,
 			);
 			path = Core;
@@ -235,11 +288,12 @@
 				7623519A222D72EF007E5067 /* Sources */,
 				7623519B222D72EF007E5067 /* Frameworks */,
 				7623519C222D72EF007E5067 /* Resources */,
+				760B1F27223D33B400228E33 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				762351B5222D83CF007E5067 /* PBXTargetDependency */,
+				760B1F26223D33B300228E33 /* PBXTargetDependency */,
 			);
 			name = TidySplitsExample;
 			productName = TidySplitsExample;
@@ -356,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				763254832237A015000013F9 /* ExampleTabController.swift in Sources */,
 				762351A1222D72EF007E5067 /* AppDelegate.swift in Sources */,
 				762351B1222D7C67007E5067 /* ExampleViewController.swift in Sources */,
 				762351B3222D7F8D007E5067 /* MainSplitViewController.swift in Sources */,
@@ -371,8 +426,11 @@
 				76F25715222D352400BDE759 /* ArrayExtensions.swift in Sources */,
 				76235193222D6E76007E5067 /* TidySplitsUISplitViewController.swift in Sources */,
 				76F2570B222D332F00BDE759 /* TidySplitsUIViewController.swift in Sources */,
+				760B1F1D223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift in Sources */,
+				760B1F19223D138600228E33 /* TidySplitsCheckpointsManager.swift in Sources */,
 				76235191222D6D31007E5067 /* TidySplitsNavigator.swift in Sources */,
 				76F25710222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift in Sources */,
+				760B1F17223D121000228E33 /* TidySplitsCheckpoint.swift in Sources */,
 				76235197222D6EE9007E5067 /* TidySplitsUITabBarViewController.swift in Sources */,
 				7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */,
 				76235195222D6EDA007E5067 /* TidySplitsUITableViewController.swift in Sources */,
@@ -392,10 +450,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		762351B5222D83CF007E5067 /* PBXTargetDependency */ = {
+		760B1F26223D33B300228E33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76F256E5222D308300BDE759 /* TidySplits */;
-			targetProxy = 762351B4222D83CF007E5067 /* PBXContainerItemProxy */;
+			targetProxy = 760B1F25223D33B300228E33 /* PBXContainerItemProxy */;
 		};
 		76F256F2222D308400BDE759 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -427,6 +485,7 @@
 		762351AE222D72F1007E5067 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4DH5P67LPK;
@@ -445,6 +504,7 @@
 		762351AF222D72F1007E5067 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4DH5P67LPK;
@@ -590,7 +650,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4DH5P67LPK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -620,7 +680,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4DH5P67LPK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

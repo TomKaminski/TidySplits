@@ -10,41 +10,41 @@ import UIKit
 
 public class TidySplitsNavigator {
   weak var delegate: TidySplitsNavigatorDelegate?
-  
+
   public var primaryChilds: [TidySplitsChildControllerProtocol]
   public var detailChilds: [TidySplitsChildControllerProtocol]
   public var currentHorizontalClass: UIUserInterfaceSizeClass
 
   var primaryNavigationController: TidySplitsUINavigationController!
   var detailNavigationController: TidySplitsUINavigationController?
-  
+
   var remapingInProgress: Bool = false
-  
+
   public init(primaryChilds: [TidySplitsChildControllerProtocol], detailChilds: [TidySplitsChildControllerProtocol], sizeClass: UIUserInterfaceSizeClass) {
     self.primaryChilds = primaryChilds
     self.detailChilds = detailChilds
     self.currentHorizontalClass = sizeClass
-    
+
     NotificationCenter.default.addObserver(self, selector: #selector(popPrimaryChildFromStack), name: .TidySplitsControllerPrimaryChildPopped, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(popDetailChildFromStack), name: .TidySplitsControllerDetailChildPopped, object: nil)
   }
-  
+
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
-  
+
   @discardableResult open func getRegularStacks() -> (UINavigationController, UINavigationController) {
     guard !primaryChilds.isEmpty else {
       fatalError("Primary childs must not be empty.")
     }
-    
+
     performRemapping {
       if primaryNavigationController == nil {
         primaryNavigationController = TidySplitsUINavigationController(.Primary)
       }
       primaryNavigationController.viewControllers = primaryChilds as! [UIViewController]
-      
-      
+
+
       detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
       if detailChilds.isEmpty {
         let defaultDetail = delegate!.getDetailPlaceholderController()
@@ -52,27 +52,27 @@ public class TidySplitsNavigator {
       }
       detailNavigationController!.viewControllers = detailChilds as! [UIViewController]
     }
-    
+
     return (primaryNavigationController, detailNavigationController!)
   }
-  
+
   @discardableResult open func getCompactStack(omitDetailChilds: Bool) -> UINavigationController {
     performRemapping {
       if primaryNavigationController == nil {
         primaryNavigationController = TidySplitsUINavigationController(.Primary)
       }
-      
+
       var ctrls = primaryChilds
       if !omitDetailChilds {
         ctrls.append(contentsOf: detailChilds)
       }
-      
+
       primaryNavigationController.viewControllers = ctrls as! [UIViewController]
       detailNavigationController = nil
     }
     return primaryNavigationController
   }
-  
+
   // ------------------------
   // MARK: Navigation methods
   // ------------------------
@@ -92,20 +92,20 @@ public class TidySplitsNavigator {
     }
     completion?(controller)
   }
-  
+
   open func tryPush(_ controller: UIViewController, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) -> Bool {
     guard let controller = controller as? TidySplitsUIViewController else {
       return false
     }
-    
+
     self.push(controller)
     completion?(controller)
     return true
   }
-  
+
   open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller as? UIViewController != nil, "Subclass of UIViewController must be pushed to this function only.")
-    
+
     if self.currentHorizontalClass == .regular {
       if controller.prefferedDisplayType == .Detail {
         detailChilds.append(controller)
@@ -125,20 +125,20 @@ public class TidySplitsNavigator {
       } else {
         primaryChilds.append(controller)
       }
-      
+
       primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
     }
-    
+
     completion?(controller)
   }
-  
+
   @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
     if self.currentHorizontalClass == .regular {
       if type == .Detail && detailChilds.count > 1 {
         let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
         completion?(poppedCtrl)
       }
-      
+
       if type == .Primary && primaryChilds.count > 1 {
         let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
         completion?(poppedCtrl)
@@ -149,13 +149,51 @@ public class TidySplitsNavigator {
         completion?(poppedCtrl)
       }
     }
-    
+
     return nil
   }
-  
-  //TODO:
-  //Breakpoints feature.
-  
+
+  //Checkpoint feature.
+  //TODO: Remove associated checkpoint when view controller disappear from parent! (back)
+  public func goToCheckpoint(_ checkpoint: TidySplitsCheckpoint) {
+    let ctrl: TidySplitsChildControllerProtocol
+
+    if checkpoint.childType == .Primary {
+      ctrl = primaryChilds[checkpoint.childIndex]
+      primaryChilds.removeSubrange(checkpoint.childIndex + 1..<primaryChilds.count)
+    } else {
+      ctrl = detailChilds[checkpoint.childIndex]
+      detailChilds.removeSubrange(checkpoint.childIndex + 1..<detailChilds.count)
+    }
+
+    if self.currentHorizontalClass == .regular {
+      if checkpoint.childType == .Primary {
+        self.primaryNavigationController.popToViewController(ctrl as! UIViewController, animated: true)
+      } else {
+        self.detailNavigationController?.popToViewController(ctrl as! UIViewController, animated: true)
+      }
+    } else {
+      self.primaryNavigationController.popToViewController(ctrl as! UIViewController, animated: true)
+    }
+  }
+
+  public func getIndex(for child: TidySplitsChildControllerProtocol) -> Int? {
+    guard let childAsController = child as? UIViewController else {
+      assert(false, "Child must be of type UIViewController - how you did this?")
+      return nil
+    }
+
+    if child.prefferedDisplayType == .Primary {
+      return primaryChilds.firstIndex(where: { (ctrl) -> Bool in
+        return childAsController == ctrl as! UIViewController
+      })
+    } else {
+      return detailChilds.firstIndex(where: { (ctrl) -> Bool in
+        return childAsController == ctrl as! UIViewController
+      })
+    }
+  }
+
   // ---------------------
   // MARK: Private methods
   // ---------------------
@@ -163,13 +201,13 @@ public class TidySplitsNavigator {
   @objc private func popDetailChildFromStack() {
     detailChilds.safeRemoveLast()
   }
-  
+
   @objc private func popPrimaryChildFromStack() {
     if primaryChilds.count > 1 {
       primaryChilds.safeRemoveLast()
     }
   }
-  
+
   private func performRemapping(_ remapFunc: () -> Void) {
     self.remapingInProgress = true
     remapFunc()

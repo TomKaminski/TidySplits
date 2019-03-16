@@ -12,6 +12,8 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   public weak var delegate: TidySplitsSplitViewDelegate?
 
   public var navigator: TidySplitsNavigator!
+  public var checkpointsManager = TidySplitsCheckpointsManager()
+  
   private var compactPrimaryConstraints: [NSLayoutConstraint] = []
   private var regularPrimaryConstraints: [NSLayoutConstraint] = []
   
@@ -140,6 +142,12 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   
   open func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol {
     return self.delegate?.getDetailsPlaceholder() ?? TidySplitsUIViewController(.Detail)
+  }
+  
+  public func goToCheckpoint(key: String) {
+    if let checkpoint = checkpointsManager.getCheckpoint(key: key) {
+      navigator.goToCheckpoint(checkpoint)
+    }
   }
   
   private func computeCompactChilds() {

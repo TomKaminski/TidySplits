@@ -32,7 +32,7 @@ class ExampleSplitViewController: TidySplitsUISplitViewController, TidySplitsSpl
   }
   
   func getInitialDetailControllers() -> [TidySplitsChildControllerProtocol] {
-    let ctrl = ExampleViewController(.Detail)
+    let ctrl = ExampleTabController(.Detail)
     ctrl.view.backgroundColor = .red
     return [ctrl]
   }
