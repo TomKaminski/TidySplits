@@ -6,13 +6,13 @@ public protocol TidySplitsCheckpointControllerProtocol: TidySplitsChildControlle
 }
 
 public extension TidySplitsCheckpointControllerProtocol where Self: UIViewController {
-  public func removeCheckpoint() {
+  func removeCheckpoint() {
     if let key = associatedCheckpointKey, let splitCtrl = self.tidySplitController {
       _ = splitCtrl.checkpointsManager.removeCheckpoint(for: key)
     }
   }
   
-  public func setupCheckpoint(with key: String) {
+  func setupCheckpoint(with key: String) {
     if let splitCtrl = self.tidySplitController, let index = splitCtrl.navigator.getIndex(for: self) {
       let checkpoint = TidySplitsCheckpoint(childType: self.prefferedDisplayType, childIndex: index)
       _ = splitCtrl.checkpointsManager.addCheckpoint(key: key, checkpoint: checkpoint)
