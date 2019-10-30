@@ -25,8 +25,23 @@ public class TidySplitsNavigator {
     self.detailChilds = detailChilds
     self.currentHorizontalClass = sizeClass
 
-    NotificationCenter.default.addObserver(self, selector: #selector(popPrimaryChildFromStack), name: .TidySplitsControllerPrimaryChildPopped, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(popDetailChildFromStack), name: .TidySplitsControllerDetailChildPopped, object: nil)
+    NotificationCenter.default.addObserver(forName: .TidySplitsControllerPrimaryChildPopped, object: nil, queue: nil) { [weak self] _ in
+      guard let strongSelf = self else {
+        return
+      }
+      
+      if strongSelf.primaryChilds.count > 1 {
+        strongSelf.primaryChilds.safeRemoveLast()
+      }
+    }
+    
+    NotificationCenter.default.addObserver(forName: .TidySplitsControllerDetailChildPopped, object: nil, queue: nil) { [weak self] _ in
+      guard let strongSelf = self else {
+        return
+      }
+      
+      strongSelf.detailChilds.safeRemoveLast()
+    }
   }
 
   deinit {
@@ -197,16 +212,6 @@ public class TidySplitsNavigator {
   // ---------------------
   // MARK: Private methods
   // ---------------------
-
-  @objc private func popDetailChildFromStack() {
-    detailChilds.safeRemoveLast()
-  }
-
-  @objc private func popPrimaryChildFromStack() {
-    if primaryChilds.count > 1 {
-      primaryChilds.safeRemoveLast()
-    }
-  }
 
   private func performRemapping(_ remapFunc: () -> Void) {
     self.remapingInProgress = true
