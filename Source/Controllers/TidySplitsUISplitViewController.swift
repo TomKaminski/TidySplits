@@ -13,10 +13,10 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
 
   public var navigator: TidySplitsNavigator!
   public var checkpointsManager = TidySplitsCheckpointsManager()
-  
-  private var compactPrimaryConstraints: [NSLayoutConstraint] = []
-  private var regularPrimaryConstraints: [NSLayoutConstraint] = []
-  
+    
+  private var primaryWidthConstraint: NSLayoutConstraint!
+  private var detailWidthConstraint: NSLayoutConstraint!
+
   /**
    Percentage value of primary stack width in **regular** layout.
    */
@@ -43,8 +43,6 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     }
     
     self.setSharedPrimaryConstraints()
-    self.setCompactPrimaryConstraints()
-    self.setRegularPrimaryConstraints()
     self.toggleContraints()
   }
   
@@ -73,21 +71,37 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     return TidySplitsUINavigationController(.Detail)
   }
   
-  private func toggleContraints() {
+  public func toggleDetailFullscreen() {
+    if navigator.currentHorizontalClass == .regular {
+      if self.primaryWidthConstraint.multiplier == 1 {
+        self.toggleContraints(fullScreenDetail: false)
+      } else {
+        self.toggleContraints(fullScreenDetail: true)
+      }
+    }
+  }
+  
+  private func toggleContraints(fullScreenDetail: Bool = false) {
     self.navigator.detailNavigationController?.view.translatesAutoresizingMaskIntoConstraints = false
     if navigator.currentHorizontalClass == .regular {
-      NSLayoutConstraint.deactivate(compactPrimaryConstraints)
+      primaryWidthConstraint?.isActive = false
+      detailWidthConstraint?.isActive = false
+      
+      primaryWidthConstraint = self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: fullScreenDetail ? 0 : self.multiplierForPrimaryRegularWidth)
+      detailWidthConstraint = self.navigator.detailNavigationController!.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: fullScreenDetail ? 1 : (CGFloat(1) - self.multiplierForPrimaryRegularWidth))
+      
       NSLayoutConstraint.activate(
-        regularPrimaryConstraints +
+        [primaryWidthConstraint] +
           [
-            self.navigator.detailNavigationController!.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: CGFloat(1) - self.multiplierForPrimaryRegularWidth),
+            detailWidthConstraint,
             self.navigator.detailNavigationController!.view.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.navigator.detailNavigationController!.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.navigator.detailNavigationController!.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     } else {
-      NSLayoutConstraint.deactivate(regularPrimaryConstraints)
-      NSLayoutConstraint.activate(compactPrimaryConstraints)
+      primaryWidthConstraint?.isActive = false
+      primaryWidthConstraint = self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor)
+      primaryWidthConstraint?.isActive = true
     }
   }
   
@@ -175,18 +189,6 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
       self.navigator.primaryNavigationController.view.topAnchor.constraint(equalTo: self.view.topAnchor),
       self.navigator.primaryNavigationController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
       self.navigator.primaryNavigationController.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-    ])
-  }
-  
-  private func setRegularPrimaryConstraints() {
-    self.regularPrimaryConstraints.append(contentsOf: [
-      self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: self.multiplierForPrimaryRegularWidth)
-      ])
-  }
-  
-  private func setCompactPrimaryConstraints() {
-    self.compactPrimaryConstraints.append(contentsOf: [
-      self.navigator.primaryNavigationController.view.widthAnchor.constraint(equalTo: self.view.widthAnchor)
     ])
   }
   

@@ -103,7 +103,7 @@ public class TidySplitsNavigator {
         detailNavigationController?.viewControllers = [controller] as! [UIViewController]
       }
     } else {
-      primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
+      primaryNavigationController.setViewControllers((primaryChilds + detailChilds) as! [UIViewController], animated: animated)
     }
     completion?(controller)
   }
@@ -171,24 +171,28 @@ public class TidySplitsNavigator {
   //Checkpoint feature.
   //TODO: Remove associated checkpoint when view controller disappear from parent! (back)
   public func goToCheckpoint(_ checkpoint: TidySplitsCheckpoint) {
-    let ctrl: TidySplitsChildControllerProtocol
+    var ctrl: TidySplitsChildControllerProtocol?
 
-    if checkpoint.childType == .Primary {
+    if checkpoint.childType == .Primary && primaryChilds.count > checkpoint.childIndex {
       ctrl = primaryChilds[checkpoint.childIndex]
       primaryChilds.removeSubrange(checkpoint.childIndex + 1..<primaryChilds.count)
-    } else {
+    } else if detailChilds.count > checkpoint.childIndex {
       ctrl = detailChilds[checkpoint.childIndex]
       detailChilds.removeSubrange(checkpoint.childIndex + 1..<detailChilds.count)
+    }
+    
+    guard let unwrappedCtrl = ctrl else {
+      return
     }
 
     if self.currentHorizontalClass == .regular {
       if checkpoint.childType == .Primary {
-        self.primaryNavigationController.popToViewController(ctrl as! UIViewController, animated: true)
+        self.primaryNavigationController.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
       } else {
-        self.detailNavigationController?.popToViewController(ctrl as! UIViewController, animated: true)
+        self.detailNavigationController?.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
       }
     } else {
-      self.primaryNavigationController.popToViewController(ctrl as! UIViewController, animated: true)
+      self.primaryNavigationController.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
     }
   }
 

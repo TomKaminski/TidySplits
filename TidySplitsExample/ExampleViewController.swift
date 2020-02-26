@@ -10,6 +10,7 @@ import UIKit
 import TidySplits
 
 class ExampleViewController: TidySplitsUIViewController {
+  var button0: UIButton!
   var button1: UIButton!
   var button2: UIButton!
   var button3: UIButton!
@@ -21,6 +22,11 @@ class ExampleViewController: TidySplitsUIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    button0 = UIButton(frame: CGRect.zero)
+    button0.setTitle("FULLSCREEN DETAIL", for: .normal)
+    button0.addTarget(self, action: #selector(detailFullscreen), for: .touchUpInside)
+    self.view.addSubview(button0)
     
     button1 = UIButton(frame: CGRect.zero)
     button1.setTitle("Push primary", for: .normal)
@@ -64,6 +70,7 @@ class ExampleViewController: TidySplitsUIViewController {
   }
   
   override func viewWillLayoutSubviews() {
+    self.button0.translatesAutoresizingMaskIntoConstraints = false
     self.button1.translatesAutoresizingMaskIntoConstraints = false
     self.button2.translatesAutoresizingMaskIntoConstraints = false
     self.button3.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +81,7 @@ class ExampleViewController: TidySplitsUIViewController {
     self.button8.translatesAutoresizingMaskIntoConstraints = false
 
     NSLayoutConstraint.activate([
+      button0.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
       button1.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
       button2.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
       button3.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -83,7 +91,8 @@ class ExampleViewController: TidySplitsUIViewController {
       button7.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
       button8.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 
-      button1.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -40),
+      button0.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -70),
+      button1.topAnchor.constraint(equalTo: self.button0.bottomAnchor),
       button2.topAnchor.constraint(equalTo: self.button1.bottomAnchor),
       button3.topAnchor.constraint(equalTo: self.button2.bottomAnchor),
       button4.topAnchor.constraint(equalTo: self.button3.bottomAnchor),
@@ -122,6 +131,10 @@ class ExampleViewController: TidySplitsUIViewController {
   
   @objc func popPrimary() {
     self.tidySplitController?.pop(from: .Primary)
+  }
+  
+  @objc func detailFullscreen() {
+    self.tidySplitController?.toggleDetailFullscreen()
   }
   
   @objc func popDetail() {
