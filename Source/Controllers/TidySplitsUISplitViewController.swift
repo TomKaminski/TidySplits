@@ -16,12 +16,16 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     
   private var primaryWidthConstraint: NSLayoutConstraint!
   private var detailWidthConstraint: NSLayoutConstraint!
-
+  
   /**
    Percentage value of primary stack width in **regular** layout.
    */
   open var multiplierForPrimaryRegularWidth: CGFloat {
     return 0.35
+  }
+  
+  public var isDetailInFullscreenMode: Bool {
+    return self.primaryWidthConstraint.multiplier == 1
   }
   
   public var isCollapsed: Bool {
