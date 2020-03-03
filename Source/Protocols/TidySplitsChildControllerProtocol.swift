@@ -19,6 +19,8 @@ public protocol TidySplitsChildControllerProtocol: class {
   
   func postPopSelfNotification()
   func popSelf() -> UIViewController?
+  
+  func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool)
 }
 
 public extension TidySplitsChildControllerProtocol where Self: UIViewController  {

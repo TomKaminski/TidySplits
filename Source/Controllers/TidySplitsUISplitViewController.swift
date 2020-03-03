@@ -60,11 +60,14 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
         self.navigator.detailNavigationController?.removeFromParent()
         self.navigator.detailNavigationController?.view.removeFromSuperview()
         computeCompactChilds()
+        (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: true, placedAtDetailStack: false)
       } else {
         computeRegularChilds()
         addChild(self.navigator.detailNavigationController!)
         view.addSubview(self.navigator.detailNavigationController!.view)
         self.navigator.detailNavigationController!.didMove(toParent: self)
+        (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: false, placedAtDetailStack: false)
+        (self.navigator.detailNavigationController?.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: false, placedAtDetailStack: true)
       }
       
       self.toggleContraints()

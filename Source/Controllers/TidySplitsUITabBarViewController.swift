@@ -9,6 +9,7 @@
 import UIKit
 
 open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsCheckpointControllerProtocol {
+  
   public var associatedCheckpointKey: String?
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
   public var ignorePopNotifications: Bool
@@ -37,4 +38,6 @@ open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChec
       self.removeCheckpoint()
     }
   }
+  
+  open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
 }

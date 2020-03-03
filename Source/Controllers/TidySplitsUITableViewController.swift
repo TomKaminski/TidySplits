@@ -39,4 +39,6 @@ open class TidySplitsUITableViewController: UITableViewController, TidySplitsChe
       self.removeCheckpoint()
     }
   }
+  
+  open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
 }
