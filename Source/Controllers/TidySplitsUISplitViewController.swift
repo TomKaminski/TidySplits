@@ -204,5 +204,9 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     view.addSubview(ctrl.view)
     ctrl.didMove(toParent: self)
   }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
 }
 

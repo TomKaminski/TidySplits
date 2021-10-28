@@ -55,4 +55,8 @@ open class TidySplitsUINavigationController: UINavigationController {
     completion?(newCtrl)
     return poppedCtrl as! TidySplitsChildControllerProtocol
   }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
 }

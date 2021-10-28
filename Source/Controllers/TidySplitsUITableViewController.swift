@@ -41,4 +41,8 @@ open class TidySplitsUITableViewController: UITableViewController, TidySplitsChe
   }
   
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
 }
