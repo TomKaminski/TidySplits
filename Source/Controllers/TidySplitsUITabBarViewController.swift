@@ -41,8 +41,4 @@ open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChec
   }
   
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
-  
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
 }

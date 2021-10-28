@@ -39,9 +39,5 @@ open class TidySplitsUIViewController: UIViewController, TidySplitsCheckpointCon
     }
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-  
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
 }
