@@ -98,15 +98,12 @@ public class TidySplitsNavigator {
     if self.currentHorizontalClass == .regular {
       if let detailNav = self.detailNavigationController {
         detailNav.setViewControllers(detailChilds as! [UIViewController], animated: animated)
-        detailNav.view.layoutIfNeeded()
       } else {
         detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
-        detailNavigationController?.view.layoutIfNeeded()
         detailNavigationController?.viewControllers = detailChilds as! [UIViewController]
       }
     } else {
       primaryNavigationController.setViewControllers((primaryChilds + detailChilds) as! [UIViewController], animated: animated)
-      primaryNavigationController.view.layoutIfNeeded()
     }
     completion?(controller)
   }

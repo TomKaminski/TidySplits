@@ -28,11 +28,12 @@ open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChec
   
   override open func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    self.postPopSelfNotification()
     
     guard !ignorePopNotifications else {
       return
     }
+    
+    self.postPopSelfNotification()
     
     if self.isMovingFromParent {
       self.removeCheckpoint()
