@@ -50,8 +50,9 @@ class ExampleViewController: TidySplitsUIViewController {
     
     button5 = UIButton(frame: CGRect.zero)
     button5.setTitle("Show detail (and refresh stack)", for: .normal)
-    button5.addTarget(self, action: #selector(showSecondary), for: .touchUpInside)
+    button5.addTarget(self, action: #selector(showSecondaryTabBar), for: .touchUpInside)
     self.view.addSubview(button5)
+    
     
     button6 = UIButton(frame: CGRect.zero)
     button6.setTitle("Push tabbar ctrl", for: .normal)
@@ -123,8 +124,8 @@ class ExampleViewController: TidySplitsUIViewController {
     self.tidySplitController?.push(ctrl)
   }
   
-  @objc func showSecondary() {
-    let ctrl = ExampleViewController(.Detail)
+  @objc func showSecondaryTabBar() {
+    let ctrl = ExampleTabController(.Detail)
     ctrl.view.backgroundColor = .green
     self.tidySplitController?.showDetail(ctrl)
   }
