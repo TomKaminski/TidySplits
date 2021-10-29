@@ -97,6 +97,8 @@ public class TidySplitsNavigator {
     let workingDetailChilds = [controller]
     if self.currentHorizontalClass == .regular {
       if let detailNav = self.detailNavigationController {
+        detailNav.popToRootViewController(animated: false)
+        detailNav.view.layoutIfNeeded()
         detailNav.setViewControllers(workingDetailChilds as! [UIViewController], animated: animated)
         detailNav.view.layoutIfNeeded()
       } else {

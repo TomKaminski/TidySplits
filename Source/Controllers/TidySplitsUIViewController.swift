@@ -25,18 +25,14 @@ open class TidySplitsUIViewController: UIViewController, TidySplitsCheckpointCon
     super.init(coder: aDecoder)
   }
   
-  override open func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    
+  deinit {
+    self.removeCheckpoint()
+
     guard !ignorePopNotifications else {
       return
     }
-    
+        
     self.postPopSelfNotification()
-    
-    if self.isMovingFromParent {
-      self.removeCheckpoint()
-    }
   }
   
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
