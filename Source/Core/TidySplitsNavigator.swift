@@ -94,17 +94,18 @@ public class TidySplitsNavigator {
 
   open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller.prefferedDisplayType == .Detail, "So you want to show in detail context but with primary controller. Where is the logic here? Think about it bro.")
-    detailChilds = [controller]
+    let workingDetailChilds = [controller]
     if self.currentHorizontalClass == .regular {
       if let detailNav = self.detailNavigationController {
-        detailNav.setViewControllers(detailChilds as! [UIViewController], animated: animated)
+        detailNav.setViewControllers(workingDetailChilds as! [UIViewController], animated: animated)
       } else {
         detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
-        detailNavigationController?.viewControllers = detailChilds as! [UIViewController]
+        detailNavigationController?.viewControllers = workingDetailChilds as! [UIViewController]
       }
     } else {
-      primaryNavigationController.setViewControllers((primaryChilds + detailChilds) as! [UIViewController], animated: animated)
+      primaryNavigationController.setViewControllers((primaryChilds + workingDetailChilds) as! [UIViewController], animated: animated)
     }
+    detailChilds = workingDetailChilds
     completion?(controller)
   }
 
