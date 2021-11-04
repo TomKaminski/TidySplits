@@ -109,7 +109,7 @@ public class TidySplitsNavigator {
     } else {
       primaryNavigationController.popToRootViewController(animated: false)
       primaryNavigationController.view.layoutIfNeeded()
-      primaryNavigationController.setViewControllers((primaryChilds + workingDetailChilds) as! [UIViewController], animated: animated)
+      primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
       primaryNavigationController?.view.layoutIfNeeded()
     }
     detailChilds = workingDetailChilds
