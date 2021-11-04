@@ -107,6 +107,8 @@ public class TidySplitsNavigator {
         detailNavigationController?.view.layoutIfNeeded()
       }
     } else {
+      primaryNavigationController.popToRootViewController(animated: false)
+      primaryNavigationController.view.layoutIfNeeded()
       primaryNavigationController.setViewControllers((primaryChilds + workingDetailChilds) as! [UIViewController], animated: animated)
       primaryNavigationController?.view.layoutIfNeeded()
     }
