@@ -26,12 +26,11 @@ open class TidySplitsUIViewController: UIViewController, TidySplitsCheckpointCon
   }
   
   deinit {
-    self.removeCheckpoint()
-
     guard !ignorePopNotifications else {
       return
     }
-        
+    
+    self.removeCheckpoint()
     self.postPopSelfNotification()
   }
   

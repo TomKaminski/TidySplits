@@ -27,12 +27,11 @@ open class TidySplitsUITableViewController: UITableViewController, TidySplitsChe
   }
   
   deinit {
-    self.removeCheckpoint()
-
     guard !ignorePopNotifications else {
       return
     }
-        
+    
+    self.removeCheckpoint()
     self.postPopSelfNotification()
   }
   
