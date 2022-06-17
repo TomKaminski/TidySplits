@@ -8,9 +8,6 @@
 
 import UIKit
 
-// NOTE: XCode 10.1 has a bug
-// https://stackoverflow.com/questions/49662283/swift-inheriting-protocol-does-not-inherit-generic-where-constraint
-// so we cannot constrain protocol to UIViewController...
 public protocol TidySplitsChildControllerProtocol: AnyObject {
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
@@ -33,5 +30,11 @@ public extension TidySplitsChildControllerProtocol where Self: UIViewController 
   
   @discardableResult func popSelf() -> UIViewController? {
     return self.tidySplitController?.pop(from: self.prefferedDisplayType)
+  }
+  
+  func handleOnPopOrDismiss() {
+    if isMovingFromParent || isBeingDismissed {
+      self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
+    }
   }
 }

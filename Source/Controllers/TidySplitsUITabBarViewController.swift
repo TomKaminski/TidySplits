@@ -24,10 +24,7 @@ open class TidySplitsUITabBarViewController : UITabBarController, TidySplitsChil
   
   open override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    
-    if isMovingFromParent || isBeingDismissed {
-      self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
-    }
+    handleOnPopOrDismiss()
   }
   
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}

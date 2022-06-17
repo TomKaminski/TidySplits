@@ -23,10 +23,7 @@ open class TidySplitsUIViewController: UIViewController, TidySplitsChildControll
   
   open override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    
-    if isMovingFromParent || isBeingDismissed {
-      self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
-    }
+    handleOnPopOrDismiss()
   }
 
   
