@@ -11,7 +11,7 @@ import UIKit
 open class TidySplitsUIViewController: UIViewController, TidySplitsChildControllerProtocol {
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
   
-  public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType, _ ignorePopNotifications: Bool = false) {
+  public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
     self.prefferedDisplayType = prefferedDisplayType
     super.init(nibName: nil, bundle: nil)
   }
