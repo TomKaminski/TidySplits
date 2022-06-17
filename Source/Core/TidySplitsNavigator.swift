@@ -24,28 +24,6 @@ public class TidySplitsNavigator {
     self.primaryChilds = primaryChilds
     self.detailChilds = detailChilds
     self.currentHorizontalClass = sizeClass
-
-    NotificationCenter.default.addObserver(forName: .TidySplitsControllerPrimaryChildPopped, object: nil, queue: nil) { [weak self] _ in
-      guard let strongSelf = self else {
-        return
-      }
-      
-      if strongSelf.primaryChilds.count > 1 {
-        strongSelf.primaryChilds.safeRemoveLast()
-      }
-    }
-    
-    NotificationCenter.default.addObserver(forName: .TidySplitsControllerDetailChildPopped, object: nil, queue: nil) { [weak self] _ in
-      guard let strongSelf = self else {
-        return
-      }
-      
-      strongSelf.detailChilds.safeRemoveLast()
-    }
-  }
-
-  deinit {
-    NotificationCenter.default.removeObserver(self)
   }
 
   @discardableResult open func getRegularStacks() -> (UINavigationController, UINavigationController) {
@@ -159,65 +137,35 @@ public class TidySplitsNavigator {
     if self.currentHorizontalClass == .regular {
       if type == .Detail && detailChilds.count > 1 {
         let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
+        afterPop(from: type)
         completion?(poppedCtrl)
       }
 
       if type == .Primary && primaryChilds.count > 1 {
         let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+        afterPop(from: type)
         completion?(poppedCtrl)
       }
     } else {
       if !detailChilds.isEmpty || primaryChilds.count > 1 {
         let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+        afterPop(from: type)
         completion?(poppedCtrl)
       }
     }
 
     return nil
   }
-
-  //Checkpoint feature.
-  //TODO: Remove associated checkpoint when view controller disappear from parent! (back)
-  public func goToCheckpoint(_ checkpoint: TidySplitsCheckpoint) {
-    var ctrl: TidySplitsChildControllerProtocol?
-
-    if checkpoint.childType == .Primary && primaryChilds.count > checkpoint.childIndex {
-      ctrl = primaryChilds[checkpoint.childIndex]
-      primaryChilds.removeSubrange(checkpoint.childIndex + 1..<primaryChilds.count)
-    } else if detailChilds.count > checkpoint.childIndex {
-      ctrl = detailChilds[checkpoint.childIndex]
-      detailChilds.removeSubrange(checkpoint.childIndex + 1..<detailChilds.count)
-    }
-    
-    guard let unwrappedCtrl = ctrl else {
+  
+  public func afterPop(from type: TidySplitsChildPreferedDisplayType) {
+    guard !remapingInProgress else {
       return
     }
-
-    if self.currentHorizontalClass == .regular {
-      if checkpoint.childType == .Primary {
-        self.primaryNavigationController.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
-      } else {
-        self.detailNavigationController?.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
-      }
-    } else {
-      self.primaryNavigationController.popToViewController(unwrappedCtrl as! UIViewController, animated: true)
-    }
-  }
-
-  public func getIndex(for child: TidySplitsChildControllerProtocol) -> Int? {
-    guard let childAsController = child as? UIViewController else {
-      assert(false, "Child must be of type UIViewController - how you did this?")
-      return nil
-    }
-
-    if child.prefferedDisplayType == .Primary {
-      return primaryChilds.firstIndex(where: { (ctrl) -> Bool in
-        return childAsController == ctrl as! UIViewController
-      })
-    } else {
-      return detailChilds.firstIndex(where: { (ctrl) -> Bool in
-        return childAsController == ctrl as! UIViewController
-      })
+    
+    if(type == .Detail) {
+      detailChilds.safeRemoveLast()
+    } else if primaryChilds.count > 1 {
+      primaryChilds.safeRemoveLast()
     }
   }
 

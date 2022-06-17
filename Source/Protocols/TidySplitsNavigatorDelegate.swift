@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tomasz Kaminski. All rights reserved.
 //
 
-public protocol TidySplitsNavigatorDelegate: class {
+public protocol TidySplitsNavigatorDelegate: AnyObject {
   func getDetailPlaceholderController() -> TidySplitsChildControllerProtocol
   
   /**

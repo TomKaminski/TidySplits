@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		760B1F17223D121000228E33 /* TidySplitsCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */; };
-		760B1F19223D138600228E33 /* TidySplitsCheckpointsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */; };
 		760B1F1D223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B1F1C223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift */; };
 		760B1F23223D33B300228E33 /* TidySplits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; };
 		760B1F24223D33B300228E33 /* TidySplits.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -32,7 +30,6 @@
 		76F2570B222D332F00BDE759 /* TidySplitsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2570A222D332F00BDE759 /* TidySplitsUIViewController.swift */; };
 		76F2570D222D339200BDE759 /* TidySplitsChildControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2570C222D339200BDE759 /* TidySplitsChildControllerProtocol.swift */; };
 		76F25710222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2570F222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift */; };
-		76F25712222D34AF00BDE759 /* NotificationNameExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F25711222D34AF00BDE759 /* NotificationNameExtensions.swift */; };
 		76F25715222D352400BDE759 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F25714222D352400BDE759 /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,8 +65,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpoint.swift; sourceTree = "<group>"; };
-		760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpointsManager.swift; sourceTree = "<group>"; };
 		760B1F1C223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TidySplitsCheckpointControllerProtocol.swift; sourceTree = "<group>"; };
 		76235190222D6D31007E5067 /* TidySplitsNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsNavigator.swift; sourceTree = "<group>"; };
 		76235192222D6E76007E5067 /* TidySplitsUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUISplitViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +91,6 @@
 		76F2570A222D332F00BDE759 /* TidySplitsUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUIViewController.swift; sourceTree = "<group>"; };
 		76F2570C222D339200BDE759 /* TidySplitsChildControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsChildControllerProtocol.swift; sourceTree = "<group>"; };
 		76F2570F222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsChildPreferedDisplayType.swift; sourceTree = "<group>"; };
-		76F25711222D34AF00BDE759 /* NotificationNameExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtensions.swift; sourceTree = "<group>"; };
 		76F25714222D352400BDE759 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,22 +121,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		760B1F14223D11CE00228E33 /* Teleports */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Teleports;
-			sourceTree = "<group>";
-		};
-		760B1F15223D11D800228E33 /* Checkpoints */ = {
-			isa = PBXGroup;
-			children = (
-				760B1F16223D121000228E33 /* TidySplitsCheckpoint.swift */,
-				760B1F18223D138600228E33 /* TidySplitsCheckpointsManager.swift */,
-			);
-			path = Checkpoints;
-			sourceTree = "<group>";
-		};
 		760B1F1E223D33A100228E33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,8 +221,6 @@
 		76F25709222D32CE00BDE759 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				760B1F15223D11D800228E33 /* Checkpoints */,
-				760B1F14223D11CE00228E33 /* Teleports */,
 				76235190222D6D31007E5067 /* TidySplitsNavigator.swift */,
 			);
 			path = Core;
@@ -261,7 +237,6 @@
 		76F25713222D34FF00BDE759 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				76F25711222D34AF00BDE759 /* NotificationNameExtensions.swift */,
 				76F25714222D352400BDE759 /* ArrayExtensions.swift */,
 			);
 			path = Extensions;
@@ -343,7 +318,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Tomasz Kaminski";
 				TargetAttributes = {
 					7623519D222D72EF007E5067 = {
@@ -423,15 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				762351B8222D8F1E007E5067 /* TidySplitsNavigatorDelegate.swift in Sources */,
-				76F25712222D34AF00BDE759 /* NotificationNameExtensions.swift in Sources */,
 				76F25715222D352400BDE759 /* ArrayExtensions.swift in Sources */,
 				76235193222D6E76007E5067 /* TidySplitsUISplitViewController.swift in Sources */,
 				76F2570B222D332F00BDE759 /* TidySplitsUIViewController.swift in Sources */,
 				760B1F1D223D317B00228E33 /* TidySplitsCheckpointControllerProtocol.swift in Sources */,
-				760B1F19223D138600228E33 /* TidySplitsCheckpointsManager.swift in Sources */,
 				76235191222D6D31007E5067 /* TidySplitsNavigator.swift in Sources */,
 				76F25710222D341F00BDE759 /* TidySplitsChildPreferedDisplayType.swift in Sources */,
-				760B1F17223D121000228E33 /* TidySplitsCheckpoint.swift in Sources */,
 				76235197222D6EE9007E5067 /* TidySplitsUITabBarViewController.swift in Sources */,
 				7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */,
 				76235195222D6EDA007E5067 /* TidySplitsUITableViewController.swift in Sources */,
@@ -496,7 +468,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -517,7 +489,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -551,6 +523,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -615,6 +588,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -667,7 +641,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = " 1.1.6";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplits;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -699,7 +673,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = " 1.1.6";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplits;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

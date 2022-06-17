@@ -11,13 +11,12 @@ import UIKit
 // NOTE: XCode 10.1 has a bug
 // https://stackoverflow.com/questions/49662283/swift-inheriting-protocol-does-not-inherit-generic-where-constraint
 // so we cannot constrain protocol to UIViewController...
-public protocol TidySplitsChildControllerProtocol: class {
+public protocol TidySplitsChildControllerProtocol: AnyObject {
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
   var tidySplitController: TidySplitsUISplitViewController? { get }
   var tidyNavigationController: TidySplitsUINavigationController? { get }
   
-  func postPopSelfNotification()
   func popSelf() -> UIViewController?
   
   func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool)
@@ -34,15 +33,5 @@ public extension TidySplitsChildControllerProtocol where Self: UIViewController 
   
   @discardableResult func popSelf() -> UIViewController? {
     return self.tidySplitController?.pop(from: self.prefferedDisplayType)
-  }
-  
-  func postPopSelfNotification() {
-    if tidySplitController?.remapingInProgress == false {
-      if self.prefferedDisplayType == .Detail {
-        NotificationCenter.default.post(name: .TidySplitsControllerDetailChildPopped, object: nil)
-      } else {
-        NotificationCenter.default.post(name: .TidySplitsControllerPrimaryChildPopped, object: nil)
-      }
-    }
   }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Tomasz Kaminski. All rights reserved.
 //
 
-public protocol TidySplitsSplitViewDelegate: class {
+public protocol TidySplitsSplitViewDelegate: AnyObject {
   
   /**
    Computed get only property which decides if we should omit details stack when transitioning from **regular** to **compact** layout.

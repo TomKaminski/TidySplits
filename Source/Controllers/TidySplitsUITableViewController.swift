@@ -8,31 +8,25 @@
 
 import UIKit
 
-open class TidySplitsUITableViewController: UITableViewController, TidySplitsCheckpointControllerProtocol {
-  public var associatedCheckpointKey: String?
+open class TidySplitsUITableViewController: UITableViewController, TidySplitsChildControllerProtocol {
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
-  public var ignorePopNotifications: Bool
 
-  public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType, _ ignorePopNotifications: Bool = false) {
+  public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
     self.prefferedDisplayType = prefferedDisplayType
-    self.ignorePopNotifications = ignorePopNotifications
-
     super.init(nibName: nil, bundle: nil)
   }
   
   required public init?(coder aDecoder: NSCoder) {
     self.prefferedDisplayType = .Detail
-    self.ignorePopNotifications = false
     super.init(coder: aDecoder)
   }
   
-  deinit {
-    guard !ignorePopNotifications else {
-      return
-    }
+  open override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
     
-    self.removeCheckpoint()
-    self.postPopSelfNotification()
+    if isMovingFromParent || isBeingDismissed {
+      self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
+    }
   }
   
   open func postRotateNotification(isCollapsed: Bool, placedAtDetailStack: Bool) {}
