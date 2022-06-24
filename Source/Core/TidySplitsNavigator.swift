@@ -137,19 +137,16 @@ public class TidySplitsNavigator {
     if self.currentHorizontalClass == .regular {
       if type == .Detail && detailChilds.count > 1 {
         let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
-        afterPop(from: type)
         completion?(poppedCtrl)
       }
 
       if type == .Primary && primaryChilds.count > 1 {
         let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
-        afterPop(from: type)
         completion?(poppedCtrl)
       }
     } else {
       if !detailChilds.isEmpty || primaryChilds.count > 1 {
         let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
-        afterPop(from: type)
         completion?(poppedCtrl)
       }
     }
