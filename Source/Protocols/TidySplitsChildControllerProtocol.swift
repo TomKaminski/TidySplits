@@ -9,6 +9,8 @@
 import UIKit
 
 public protocol TidySplitsChildControllerProtocol: AnyObject {
+  var allowAfterPopAction: Bool { get }
+  
   var prefferedDisplayType: TidySplitsChildPreferedDisplayType { get set }
   
   var tidySplitController: TidySplitsUISplitViewController? { get }
@@ -33,7 +35,7 @@ public extension TidySplitsChildControllerProtocol where Self: UIViewController 
   }
   
   func handleOnPopOrDismiss() {
-    if isMovingFromParent || isBeingDismissed {
+    if isMovingFromParent && allowAfterPopAction {
       self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
     }
   }

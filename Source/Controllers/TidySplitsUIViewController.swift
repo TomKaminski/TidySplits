@@ -11,6 +11,10 @@ import UIKit
 open class TidySplitsUIViewController: UIViewController, TidySplitsChildControllerProtocol {
   public var prefferedDisplayType: TidySplitsChildPreferedDisplayType
   
+  open var allowAfterPopAction: Bool {
+    return true
+  }
+  
   public init(_ prefferedDisplayType: TidySplitsChildPreferedDisplayType) {
     self.prefferedDisplayType = prefferedDisplayType
     super.init(nibName: nil, bundle: nil)
