@@ -35,7 +35,7 @@ public extension TidySplitsChildControllerProtocol where Self: UIViewController 
   }
   
   func handleOnPopOrDismiss() {
-    if isMovingFromParent && allowAfterPopAction {
+    if isMovingFromParent && allowAfterPopAction && self.parent is TidySplitsUINavigationController {
       self.tidySplitController?.navigator.afterPop(from: self.prefferedDisplayType)
     }
   }
