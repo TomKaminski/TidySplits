@@ -23,8 +23,6 @@
 		762351B8222D8F1E007E5067 /* TidySplitsNavigatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762351B6222D8DEF007E5067 /* TidySplitsNavigatorDelegate.swift */; };
 		763254832237A015000013F9 /* ExampleTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763254822237A015000013F9 /* ExampleTabController.swift */; };
 		7642385B222E6BC500206E69 /* TidySplitsUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642385A222E6BC500206E69 /* TidySplitsUINavigationController.swift */; };
-		76F256F0222D308400BDE759 /* TidySplits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F256E6222D308300BDE759 /* TidySplits.framework */; };
-		76F256F5222D308400BDE759 /* TidySplitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F256F4222D308400BDE759 /* TidySplitsTests.swift */; };
 		76F256F7222D308400BDE759 /* TidySplits.h in Headers */ = {isa = PBXBuildFile; fileRef = 76F256E9222D308300BDE759 /* TidySplits.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		76F25706222D327D00BDE759 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 76F25705222D327D00BDE759 /* Readme.md */; };
 		76F2570B222D332F00BDE759 /* TidySplitsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2570A222D332F00BDE759 /* TidySplitsUIViewController.swift */; };
@@ -35,13 +33,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		760B1F25223D33B300228E33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 76F256DD222D308300BDE759 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 76F256E5222D308300BDE759;
-			remoteInfo = TidySplits;
-		};
-		76F256F1222D308400BDE759 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76F256DD222D308300BDE759 /* Project object */;
 			proxyType = 1;
@@ -84,9 +75,6 @@
 		76F256E6222D308300BDE759 /* TidySplits.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TidySplits.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F256E9222D308300BDE759 /* TidySplits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TidySplits.h; sourceTree = "<group>"; };
 		76F256EA222D308300BDE759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76F256EF222D308400BDE759 /* TidySplitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TidySplitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		76F256F4222D308400BDE759 /* TidySplitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsTests.swift; sourceTree = "<group>"; };
-		76F256F6222D308400BDE759 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76F25705222D327D00BDE759 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		76F2570A222D332F00BDE759 /* TidySplitsUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsUIViewController.swift; sourceTree = "<group>"; };
 		76F2570C222D339200BDE759 /* TidySplitsChildControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TidySplitsChildControllerProtocol.swift; sourceTree = "<group>"; };
@@ -107,14 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		76F256EC222D308400BDE759 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				76F256F0222D308400BDE759 /* TidySplits.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +127,6 @@
 			children = (
 				76F25700222D309500BDE759 /* Source */,
 				76F25703222D30AF00BDE759 /* Documentation */,
-				76F25704222D30B800BDE759 /* Tests */,
 				7623519F222D72EF007E5067 /* TidySplitsExample */,
 				76F256E7222D308300BDE759 /* Products */,
 				760B1F1E223D33A100228E33 /* Frameworks */,
@@ -158,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				76F256E6222D308300BDE759 /* TidySplits.framework */,
-				76F256EF222D308400BDE759 /* TidySplitsTests.xctest */,
 				7623519E222D72EF007E5067 /* TidySplitsExample.app */,
 			);
 			name = Products;
@@ -184,15 +162,6 @@
 				76F25705222D327D00BDE759 /* Readme.md */,
 			);
 			path = Documentation;
-			sourceTree = "<group>";
-		};
-		76F25704222D30B800BDE759 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				76F256F6222D308400BDE759 /* Info.plist */,
-				76F256F4222D308400BDE759 /* TidySplitsTests.swift */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		76F25707222D32C100BDE759 /* Controllers */ = {
@@ -293,24 +262,6 @@
 			productReference = 76F256E6222D308300BDE759 /* TidySplits.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		76F256EE222D308400BDE759 /* TidySplitsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 76F256FD222D308400BDE759 /* Build configuration list for PBXNativeTarget "TidySplitsTests" */;
-			buildPhases = (
-				76F256EB222D308400BDE759 /* Sources */,
-				76F256EC222D308400BDE759 /* Frameworks */,
-				76F256ED222D308400BDE759 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				76F256F2222D308400BDE759 /* PBXTargetDependency */,
-			);
-			name = TidySplitsTests;
-			productName = TidySplitsTests;
-			productReference = 76F256EF222D308400BDE759 /* TidySplitsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -329,9 +280,6 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
 					};
-					76F256EE222D308400BDE759 = {
-						CreatedOnToolsVersion = 10.1;
-					};
 				};
 			};
 			buildConfigurationList = 76F256E0222D308300BDE759 /* Build configuration list for PBXProject "TidySplits" */;
@@ -348,7 +296,6 @@
 			projectRoot = "";
 			targets = (
 				76F256E5222D308300BDE759 /* TidySplits */,
-				76F256EE222D308400BDE759 /* TidySplitsTests */,
 				7623519D222D72EF007E5067 /* TidySplitsExample */,
 			);
 		};
@@ -369,13 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76F25706222D327D00BDE759 /* Readme.md in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		76F256ED222D308400BDE759 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,14 +352,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		76F256EB222D308400BDE759 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				76F256F5222D308400BDE759 /* TidySplitsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -427,11 +359,6 @@
 			isa = PBXTargetDependency;
 			target = 76F256E5222D308300BDE759 /* TidySplits */;
 			targetProxy = 760B1F25223D33B300228E33 /* PBXContainerItemProxy */;
-		};
-		76F256F2222D308400BDE759 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 76F256E5222D308300BDE759 /* TidySplits */;
-			targetProxy = 76F256F1222D308400BDE759 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -463,12 +390,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4DH5P67LPK;
 				INFOPLIST_FILE = TidySplitsExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -484,12 +411,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4DH5P67LPK;
 				INFOPLIST_FILE = TidySplitsExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -550,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -609,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -635,7 +562,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -667,7 +594,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,44 +607,6 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		76F256FE222D308400BDE759 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4DH5P67LPK;
-				INFOPLIST_FILE = TidySplitsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		76F256FF222D308400BDE759 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4DH5P67LPK;
-				INFOPLIST_FILE = TidySplitsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tomaszkaminski.TidySplitsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -748,15 +637,6 @@
 			buildConfigurations = (
 				76F256FB222D308400BDE759 /* Debug */,
 				76F256FC222D308400BDE759 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		76F256FD222D308400BDE759 /* Build configuration list for PBXNativeTarget "TidySplitsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				76F256FE222D308400BDE759 /* Debug */,
-				76F256FF222D308400BDE759 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
