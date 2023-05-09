@@ -39,10 +39,10 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     navigator = TidySplitsNavigator(primaryChilds: delegate!.getInitialPrimaryControllers(), detailChilds: delegate!.getInitialDetailControllers(), sizeClass: self.traitCollection.horizontalSizeClass)
     navigator.delegate = self
     
-    if navigator.currentHorizontalClass == .compact {
-      setupCompactChilds()
-    } else {
+    if navigator.shouldRenderInRegularLayout {
       setupRegularChilds()
+    } else {
+      setupCompactChilds()
     }
     
     self.setSharedPrimaryConstraints()
@@ -52,21 +52,21 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   override open func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
     super.willTransition(to: newCollection, with: coordinator)
     
-    if newCollection.horizontalSizeClass != navigator.currentHorizontalClass {
-      navigator.currentHorizontalClass = newCollection.horizontalSizeClass
-      if navigator.currentHorizontalClass == .compact {
-        self.navigator.detailNavigationController?.willMove(toParent: nil)
-        self.navigator.detailNavigationController?.removeFromParent()
-        self.navigator.detailNavigationController?.view.removeFromSuperview()
-        computeCompactChilds()
-        (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: true, placedAtDetailStack: false)
-      } else {
+    if newCollection.horizontalSizeClass != navigator.deviceHorizontalClass {
+      navigator.deviceHorizontalClass = newCollection.horizontalSizeClass
+      if navigator.shouldRenderInRegularLayout {
         computeRegularChilds()
         addChild(self.navigator.detailNavigationController!)
         view.addSubview(self.navigator.detailNavigationController!.view)
         self.navigator.detailNavigationController!.didMove(toParent: self)
         (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: false, placedAtDetailStack: false)
         (self.navigator.detailNavigationController?.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: false, placedAtDetailStack: true)
+      } else {
+        self.navigator.detailNavigationController?.willMove(toParent: nil)
+        self.navigator.detailNavigationController?.removeFromParent()
+        self.navigator.detailNavigationController?.view.removeFromSuperview()
+        computeCompactChilds()
+        (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: true, placedAtDetailStack: false)
       }
       
       self.toggleContraints()
@@ -78,7 +78,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   }
   
   public func toggleDetailFullscreen() {
-    if navigator.currentHorizontalClass == .regular {
+    if navigator.shouldRenderInRegularLayout {
       if self.primaryWidthConstraint.multiplier == 1 {
         self.toggleContraints(fullScreenDetail: false)
       } else {
@@ -89,7 +89,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
   
   private func toggleContraints(fullScreenDetail: Bool = false) {
     self.navigator.detailNavigationController?.view.translatesAutoresizingMaskIntoConstraints = false
-    if navigator.currentHorizontalClass == .regular {
+    if navigator.shouldRenderInRegularLayout {
       primaryWidthConstraint?.isActive = false
       detailWidthConstraint?.isActive = false
       

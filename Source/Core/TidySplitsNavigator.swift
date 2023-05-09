@@ -13,17 +13,21 @@ public class TidySplitsNavigator {
 
   public var primaryChilds: [TidySplitsChildControllerProtocol]
   public var detailChilds: [TidySplitsChildControllerProtocol]
-  public var currentHorizontalClass: UIUserInterfaceSizeClass
+  public var deviceHorizontalClass: UIUserInterfaceSizeClass
 
   var primaryNavigationController: TidySplitsUINavigationController!
   var detailNavigationController: TidySplitsUINavigationController?
 
   var remapingInProgress: Bool = false
+  
+  public var shouldRenderInRegularLayout: Bool {
+    return deviceHorizontalClass == .regular && UIDevice.current.userInterfaceIdiom == .pad
+  }
 
   public init(primaryChilds: [TidySplitsChildControllerProtocol], detailChilds: [TidySplitsChildControllerProtocol], sizeClass: UIUserInterfaceSizeClass) {
     self.primaryChilds = primaryChilds
     self.detailChilds = detailChilds
-    self.currentHorizontalClass = sizeClass
+    self.deviceHorizontalClass = sizeClass
   }
 
   @discardableResult open func getRegularStacks() -> (UINavigationController, UINavigationController) {
@@ -73,7 +77,7 @@ public class TidySplitsNavigator {
   open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller.prefferedDisplayType == .Detail, "So you want to show in detail context but with primary controller. Where is the logic here? Think about it bro.")
     let workingDetailChilds = [controller]
-    if self.currentHorizontalClass == .regular {
+    if shouldRenderInRegularLayout {
       if let detailNav = self.detailNavigationController {
         detailNav.popToRootViewController(animated: false)
         detailNav.view.layoutIfNeeded()
@@ -107,7 +111,7 @@ public class TidySplitsNavigator {
   open func push(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller as? UIViewController != nil, "Subclass of UIViewController must be pushed to this function only.")
 
-    if self.currentHorizontalClass == .regular {
+    if shouldRenderInRegularLayout {
       if controller.prefferedDisplayType == .Detail {
         detailChilds.append(controller)
         if let detailNav = self.detailNavigationController {
@@ -134,7 +138,7 @@ public class TidySplitsNavigator {
   }
 
   @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
-    if self.currentHorizontalClass == .regular {
+    if shouldRenderInRegularLayout  {
       if type == .Detail && detailChilds.count > 1 {
         let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
         completion?(poppedCtrl)
