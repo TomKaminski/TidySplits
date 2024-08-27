@@ -19,7 +19,7 @@ public class TidySplitsNavigator {
   var detailNavigationController: TidySplitsUINavigationController?
 
   var remapingInProgress: Bool = false
-  
+
   public var shouldRenderInRegularLayout: Bool {
     return deviceHorizontalClass == .regular && UIDevice.current.userInterfaceIdiom == .pad
   }
@@ -40,7 +40,6 @@ public class TidySplitsNavigator {
         primaryNavigationController = TidySplitsUINavigationController(.Primary)
       }
       primaryNavigationController.viewControllers = primaryChilds as! [UIViewController]
-
 
       detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
       if detailChilds.isEmpty {
@@ -71,21 +70,23 @@ public class TidySplitsNavigator {
   }
 
   // ------------------------
+
   // MARK: Navigation methods
+
   // ------------------------
 
   open func showDetail(_ controller: TidySplitsChildControllerProtocol, _ animated: Bool = true, _ completion: ((TidySplitsChildControllerProtocol) -> Void)? = nil) {
     assert(controller.prefferedDisplayType == .Detail, "So you want to show in detail context but with primary controller. Where is the logic here? Think about it bro.")
-    let workingDetailChilds = [controller]
+    detailChilds = [controller]
     if shouldRenderInRegularLayout {
-      if let detailNav = self.detailNavigationController {
+      if let detailNav = detailNavigationController {
         detailNav.popToRootViewController(animated: false)
         detailNav.view.layoutIfNeeded()
-        detailNav.setViewControllers(workingDetailChilds as! [UIViewController], animated: animated)
+        detailNav.setViewControllers(detailChilds as! [UIViewController], animated: animated)
         detailNav.view.layoutIfNeeded()
       } else {
         detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
-        detailNavigationController?.viewControllers = workingDetailChilds as! [UIViewController]
+        detailNavigationController?.viewControllers = detailChilds as! [UIViewController]
         detailNavigationController?.view.layoutIfNeeded()
       }
     } else {
@@ -94,7 +95,6 @@ public class TidySplitsNavigator {
       primaryNavigationController.pushViewController(controller as! UIViewController, animated: animated)
       primaryNavigationController?.view.layoutIfNeeded()
     }
-    detailChilds = workingDetailChilds
     completion?(controller)
   }
 
@@ -103,7 +103,7 @@ public class TidySplitsNavigator {
       return false
     }
 
-    self.push(controller)
+    push(controller)
     completion?(controller)
     return true
   }
@@ -114,7 +114,7 @@ public class TidySplitsNavigator {
     if shouldRenderInRegularLayout {
       if controller.prefferedDisplayType == .Detail {
         detailChilds.append(controller)
-        if let detailNav = self.detailNavigationController {
+        if let detailNav = detailNavigationController {
           detailNav.pushViewController(controller as! UIViewController, animated: animated)
         } else {
           detailNavigationController = delegate?.createDetailController() ?? TidySplitsUINavigationController(.Detail)
@@ -138,32 +138,32 @@ public class TidySplitsNavigator {
   }
 
   @discardableResult open func pop(from type: TidySplitsChildPreferedDisplayType, _ animated: Bool = true, _ completion: ((UIViewController?) -> Void)? = nil) -> UIViewController? {
-    if shouldRenderInRegularLayout  {
-      if type == .Detail && detailChilds.count > 1 {
-        let poppedCtrl = self.detailNavigationController?.popViewController(animated: animated)
+    if shouldRenderInRegularLayout {
+      if type == .Detail, detailChilds.count > 1 {
+        let poppedCtrl = detailNavigationController?.popViewController(animated: animated)
         completion?(poppedCtrl)
       }
 
-      if type == .Primary && primaryChilds.count > 1 {
-        let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+      if type == .Primary, primaryChilds.count > 1 {
+        let poppedCtrl = primaryNavigationController.popViewController(animated: animated)
         completion?(poppedCtrl)
       }
     } else {
       if !detailChilds.isEmpty || primaryChilds.count > 1 {
-        let poppedCtrl = self.primaryNavigationController.popViewController(animated: animated)
+        let poppedCtrl = primaryNavigationController.popViewController(animated: animated)
         completion?(poppedCtrl)
       }
     }
 
     return nil
   }
-  
+
   public func afterPop(from type: TidySplitsChildPreferedDisplayType) {
     guard !remapingInProgress else {
       return
     }
-    
-    if(type == .Detail) {
+
+    if type == .Detail {
       detailChilds.safeRemoveLast()
     } else if primaryChilds.count > 1 {
       primaryChilds.safeRemoveLast()
@@ -171,12 +171,14 @@ public class TidySplitsNavigator {
   }
 
   // ---------------------
+
   // MARK: Private methods
+
   // ---------------------
 
   private func performRemapping(_ remapFunc: () -> Void) {
-    self.remapingInProgress = true
+    remapingInProgress = true
     remapFunc()
-    self.remapingInProgress = false
+    remapingInProgress = false
   }
 }
