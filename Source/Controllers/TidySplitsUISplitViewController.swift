@@ -36,13 +36,13 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     
     assert(delegate != nil, "Delegate must not be nil!")
     
-    navigator = TidySplitsNavigator(primaryChilds: delegate!.getInitialPrimaryControllers(), detailChilds: delegate!.getInitialDetailControllers(), sizeClass: self.traitCollection.horizontalSizeClass)
+    navigator = TidySplitsNavigator(primaryChildren: delegate!.getInitialPrimaryControllers(), detailChildren: delegate!.getInitialDetailControllers(), sizeClass: self.traitCollection.horizontalSizeClass)
     navigator.delegate = self
     
     if navigator.shouldRenderInRegularLayout {
-      setupRegularChilds()
+      setupRegularChildren()
     } else {
-      setupCompactChilds()
+      setupCompactChildren()
     }
     
     self.setSharedPrimaryConstraints()
@@ -55,7 +55,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     if newCollection.horizontalSizeClass != navigator.deviceHorizontalClass {
       navigator.deviceHorizontalClass = newCollection.horizontalSizeClass
       if navigator.shouldRenderInRegularLayout {
-        computeRegularChilds()
+        computeRegularChildren()
         addChild(self.navigator.detailNavigationController!)
         view.addSubview(self.navigator.detailNavigationController!.view)
         self.navigator.detailNavigationController!.didMove(toParent: self)
@@ -65,7 +65,7 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
         self.navigator.detailNavigationController?.willMove(toParent: nil)
         self.navigator.detailNavigationController?.removeFromParent()
         self.navigator.detailNavigationController?.view.removeFromSuperview()
-        computeCompactChilds()
+        computeCompactChildren()
         (self.navigator.primaryNavigationController.topViewController as? TidySplitsChildControllerProtocol)?.postRotateNotification(isCollapsed: true, placedAtDetailStack: false)
       }
       
@@ -164,20 +164,20 @@ open class TidySplitsUISplitViewController: UIViewController, TidySplitsNavigato
     return self.delegate?.getDetailsPlaceholder() ?? TidySplitsUIViewController(.Detail)
   }
   
-  private func computeCompactChilds() {
-    navigator.getCompactStack(omitDetailChilds: self.delegate?.shouldOmitDetailChildsForCompactMode ?? false)
+  private func computeCompactChildren() {
+    navigator.getCompactStack(omitDetailChildren: self.delegate?.shouldOmitDetailChildrenForCompactMode ?? false)
   }
   
-  private func computeRegularChilds() {
+  private func computeRegularChildren() {
     navigator.getRegularStacks()
   }
   
-  private func setupCompactChilds() {
-    let compactNavCtrl = navigator.getCompactStack(omitDetailChilds: self.delegate?.shouldOmitDetailChildsForCompactMode ?? false)
+  private func setupCompactChildren() {
+    let compactNavCtrl = navigator.getCompactStack(omitDetailChildren: self.delegate?.shouldOmitDetailChildrenForCompactMode ?? false)
     addChildController(compactNavCtrl)
   }
   
-  private func setupRegularChilds() {
+  private func setupRegularChildren() {
     let stacks = navigator.getRegularStacks()
     addChildController(stacks.0)
     addChildController(stacks.1)

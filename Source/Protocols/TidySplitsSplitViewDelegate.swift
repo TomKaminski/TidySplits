@@ -11,7 +11,7 @@ public protocol TidySplitsSplitViewDelegate: AnyObject {
   /**
    Computed get only property which decides if we should omit details stack when transitioning from **regular** to **compact** layout.
    */
-  var shouldOmitDetailChildsForCompactMode: Bool { get }
+  var shouldOmitDetailChildrenForCompactMode: Bool { get }
 
   /**
   Delegate method to define which controller (or controllers) starts primary stack.

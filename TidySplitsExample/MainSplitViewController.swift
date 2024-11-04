@@ -10,7 +10,7 @@ import Foundation
 import TidySplits
 
 class ExampleSplitViewController: TidySplitsUISplitViewController, TidySplitsSplitViewDelegate {
-  var shouldOmitDetailChildsForCompactMode: Bool {
+  var shouldOmitDetailChildrenForCompactMode: Bool {
     return false
   }
   
